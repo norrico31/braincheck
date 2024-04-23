@@ -8,7 +8,7 @@ An in-depth paragraph about your project and overview of use.
 
 ## Getting Started
 
-### Dependencies
+### Dependency Tools
 
 * React 18.2.0
 * React Router DOM 6.22.3

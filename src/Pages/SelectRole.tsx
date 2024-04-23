@@ -74,7 +74,7 @@ function TextMobileStepper() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
         setProgress(prevVal => prevVal - 33.33)
     };
-
+    console.log(selectedLabel)
     return (
         <Box sx={{ maxWidth: '100%', flexGrow: 1 }}>
             <LinearProgress variant="determinate" value={progress} />
@@ -121,8 +121,8 @@ function TextMobileStepper() {
                     </Grid>
                 ))}
             </Grid>
-            <ModalStart open={isOpenModalStart} handleClose={() => {
-                setSelectedLabel(undefined)
+            <ModalStart open={isOpenModalStart} handleClose={(isBack: boolean) => {
+                if (isBack) setSelectedLabel(undefined)
                 setIsOpenModalStart(false)
             }} />
         </Box>
@@ -158,7 +158,7 @@ function ButtonGrid({ onClick, children }: { onClick: () => void; children: Reac
 }
 
 
-function ModalStart({ open, handleClose }: { open: boolean; handleClose: () => void }) {
+function ModalStart({ open, handleClose }: { open: boolean; handleClose: (isBack: boolean) => void }) {
     const navigate = useNavigate()
     return <Modal
         open={open}
@@ -169,7 +169,7 @@ function ModalStart({ open, handleClose }: { open: boolean; handleClose: () => v
     >
         <Slide direction="up" in={open} mountOnEnter unmountOnExit onClick={(e) => {
             e.stopPropagation()
-            handleClose()
+            handleClose(false)
         }}>
             <Box sx={{ width: '100%', height: '100%' }}>
                 <Box sx={style}>
@@ -182,11 +182,11 @@ function ModalStart({ open, handleClose }: { open: boolean; handleClose: () => v
                         Please note that going back to the home page will erase your current progress.
                     </Paragraph>
                     <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' gap={1} mt={2}>
-                        <Button sx={{ background: '#dededede' }} onClick={handleClose}>Keep Going</Button>
+                        <Button sx={{ background: '#dededede' }} onClick={() => handleClose(false)}>Keep Going</Button>
                         <Button sx={{ background: '#dededede' }} onClick={() => {
                             alert('go back to start functionality')
                             // navigate('/select-role')
-                            handleClose()
+                            handleClose(true)
                         }}>Start Over</Button>
                     </Box>
                 </Box>
