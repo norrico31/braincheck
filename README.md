@@ -15,6 +15,9 @@ An in-depth paragraph about your project and overview of use.
 * Framer Motion 11.1.7
 * Axios 1.6.8
 
+### NOTE
+* Use node version 18.0 above 
+
 ### Installing
 
 * First cd into the repo

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate, useSearchParams } from "react-router-dom";
 import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -9,6 +10,10 @@ import { useTheme } from '@emotion/react';
 import { Button } from '../shared/components';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import Modal from '@mui/material/Modal';
+import Slide from '@mui/material/Slide';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 function LinearWithValueLabel({ progress, handleProgress }: { progress: number; handleProgress: () => void }) {
     React.useEffect(() => {
@@ -58,11 +63,12 @@ function TextMobileStepper() {
     const [progress, setProgress] = React.useState(33.33)
     const maxSteps = steps.length;
     const [selectedLabel, setSelectedLabel] = React.useState<undefined | string>()
-    console.log(selectedLabel)
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setProgress(progress + 33.33)
-    };
+    const [isOpenModalStart, setIsOpenModalStart] = React.useState(false);
+
+    // const handleNext = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    //     setProgress(progress + 33.33)
+    // };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -80,7 +86,7 @@ function TextMobileStepper() {
                 nextButton={
                     <Button
                         size="small"
-                        onClick={handleNext}
+                        onClick={() => setIsOpenModalStart(true)}
                         disabled={activeStep === maxSteps - 1}
                     >
                         Home
@@ -115,6 +121,10 @@ function TextMobileStepper() {
                     </Grid>
                 ))}
             </Grid>
+            <ModalStart open={isOpenModalStart} handleClose={() => {
+                setSelectedLabel(undefined)
+                setIsOpenModalStart(false)
+            }} />
         </Box>
     )
 }
@@ -145,6 +155,63 @@ const gridButtons = [
 
 function ButtonGrid({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
     return <Button sx={{ width: '100%', height: '150px', background: 'lime' }} onClick={onClick}>{children}</Button>
+}
+
+
+function ModalStart({ open, handleClose }: { open: boolean; handleClose: () => void }) {
+    const navigate = useNavigate()
+    return <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+
+    >
+        <Slide direction="up" in={open} mountOnEnter unmountOnExit onClick={(e) => {
+            e.stopPropagation()
+            handleClose()
+        }}>
+            <Box sx={{ width: '100%', height: '100%' }}>
+                <Box sx={style}>
+                    <Box textAlign='center'>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Want to start over?
+                        </Typography>
+                    </Box>
+                    <Paragraph id="modal-modal-description">
+                        Please note that going back to the home page will erase your current progress.
+                    </Paragraph>
+                    <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' gap={1} mt={2}>
+                        <Button sx={{ background: '#dededede' }} onClick={handleClose}>Keep Going</Button>
+                        <Button sx={{ background: '#dededede' }} onClick={() => {
+                            alert('go back to start functionality')
+                            // navigate('/select-role')
+                            handleClose()
+                        }}>Start Over</Button>
+                    </Box>
+                </Box>
+            </Box>
+        </Slide>
+    </Modal>
+}
+
+const style = {
+    position: 'absolute' as const,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    maxWidth: '500px',
+    minWidth: 250,
+    bgcolor: 'background.paper',
+    boxShadow: 5,
+    borderRadius: '10px',
+    p: 4,
+};
+
+const Paragraph = ({ children, id }: { id: string; children: React.ReactNode }) => {
+    return <Typography id={id} sx={{ mt: 2, letterSpacing: 0, fontSize: 14, width: 300, textAlign: 'center' }}>
+        {children}
+    </Typography>
 }
 
 export default function SelectRole() {

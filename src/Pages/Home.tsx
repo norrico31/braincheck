@@ -85,5 +85,6 @@ const style = {
     minWidth: 250,
     bgcolor: 'background.paper',
     boxShadow: 5,
+    borderRadius: '10px',
     p: 4,
 };
