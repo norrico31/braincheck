@@ -12,6 +12,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
 import Slide from '@mui/material/Slide'
+import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton'
 import CheckIcon from '@mui/icons-material/Check'
 import Paper from '@mui/material/Paper'
@@ -175,20 +176,27 @@ const steps = ({ handleSelectedChoice }: any) => {
 
 function TextMobileStepper() {
     const theme = useTheme() as any
-    const [activeStep, setActiveStep] = React.useState(0)
-    const [progress, setProgress] = React.useState(33.33)
     const maxSteps = steps({ handleSelectedChoice: () => null }).length
+    const [progress, setProgress] = React.useState(Math.floor(maxSteps))
+    const [activeStep, setActiveStep] = React.useState(0)
     const [selectedRole, setSelectedRole] = React.useState<undefined | string>()
     const [isOpenModalStart, setIsOpenModalStart] = React.useState(false)
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1)
-        setProgress(progress + 33.33)
+        if (activeStep >= (maxSteps - 2)) {
+            setProgress(99.9)
+        } else {
+            setProgress(prevVal => prevVal + progress)
+        }
     }
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1)
-        setProgress(prevVal => prevVal - 33.33)
+        setProgress(prevVal => {
+            if (activeStep !== maxSteps) return prevVal - progress
+            return 100
+        })
     }
     return (
         <Box sx={{ maxWidth: '100%', flexGrow: 1 }}>
@@ -202,14 +210,10 @@ function TextMobileStepper() {
                     <Button
                         size="small"
                         onClick={() => setIsOpenModalStart(true)}
-                        disabled={activeStep === maxSteps - 1}
+                        disabled={activeStep === 0}
                     >
+                        <HomeIcon />
                         Home
-                        {theme?.direction === 'rtl' ? (
-                            <KeyboardArrowLeft />
-                        ) : (
-                            <KeyboardArrowRight />
-                        )}
                     </Button>
                 }
                 backButton={
@@ -219,7 +223,7 @@ function TextMobileStepper() {
                         ) : (
                             <KeyboardArrowLeft />
                         )}
-                        Previous question
+                        Go back
                     </Button>
                 }
             />
