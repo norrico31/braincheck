@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal'
 import Slide from '@mui/material/Slide'
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import { Button } from '../shared/components'
+import { Button } from './components'
 import { Link } from 'react-router-dom';
 
 function ModalAbout({ open, handleClose }: { open: boolean; handleClose: () => void }) {
