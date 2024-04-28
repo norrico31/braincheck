@@ -68,7 +68,7 @@ const steps = ({ handleSelectedChoice }: any) => {
                 </Box>
                 <Grid container display='flex' justifyContent='center' gap={1}>
                     {btnsFirstStep.map((s) => (
-                        <Grid xs={8} sm={5} md={3} lg={2} xl={2} key={s}>
+                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={s}>
                             <Paper>
                                 <ButtonGrid onClick={() => onClick(s)}>{s}</ButtonGrid>
                             </Paper>
@@ -87,7 +87,7 @@ const steps = ({ handleSelectedChoice }: any) => {
                 </Box>
                 <Grid container display='flex' justifyContent='center' gap={1}>
                     {btnsSecondStep.map((s) => (
-                        <Grid xs={8} sm={5} md={3} lg={2} xl={2} key={s}>
+                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={s}>
                             <Paper>
                                 <ButtonGrid onClick={() => onClick(s)}>{s}</ButtonGrid>
                             </Paper>
@@ -106,7 +106,7 @@ const steps = ({ handleSelectedChoice }: any) => {
                 </Box>
                 <Grid container display='flex' justifyContent='center' gap={1}>
                     {new Array(4).fill(null).map((_, idx) => (
-                        <Grid xs={8} sm={5} md={3} lg={2} xl={2} key={idx}>
+                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={idx}>
                             <Paper elevation={2} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', minHeight: 200, gap: 3 }}>
                                 <CheckIcon />
                                 Col {idx + 1}
@@ -135,7 +135,7 @@ const steps = ({ handleSelectedChoice }: any) => {
                         '40-60%',
                         'Over 60%',
                     ].map((s, idx) => (
-                        <Grid xs={8} sm={5} md={3} lg={2} xl={2} key={idx}>
+                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={idx}>
                             <ButtonGrid onClick={() => onClick(s)}>{s}</ButtonGrid>
                         </Grid>
                     ))}
@@ -170,33 +170,49 @@ const steps = ({ handleSelectedChoice }: any) => {
             <div style={{ textAlign: 'center', marginTop: 50 }}>
                 <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
             </div>
-        </div>
+        </div>,
+        () => <div>
+            <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                <Typography variant='h4'>Faster and easier than paper tests</Typography>
+            </Box>
+            <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                <Typography variant='h6' >Unlike pen-and-paper tests, BrainCheck lets you assess patients from anywhere with detailed cognitive reports in just 15 minutes.</Typography>
+            </Box>
+            <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                <Typography variant='h6' >It's easy and accessible for your patients and integrates seamlessly into your workflows.</Typography>
+            </Box>
+            <div style={{ marginTop: 50, display: 'grid', placeItems: 'end' }}>
+                <Box width='50%' display='flex' justifyContent='space-between' alignItems='center'>
+                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
+                    <Typography variant='caption' >Source: Product Update 2019</Typography>
+                </Box>
+            </div>
+        </div>,
     ]
 }
 
 function TextMobileStepper() {
     const theme = useTheme() as any
     const maxSteps = steps({ handleSelectedChoice: () => null }).length
-    const [progress, setProgress] = React.useState(Math.floor(maxSteps))
+    const [progress, setProgress] = React.useState(maxSteps)
     const [activeStep, setActiveStep] = React.useState(0)
     const [selectedRole, setSelectedRole] = React.useState<undefined | string>()
     const [isOpenModalStart, setIsOpenModalStart] = React.useState(false)
 
+    console.log(progress)
+
     const handleNext = () => {
+        const lastStep = maxSteps - 2;
         setActiveStep((prevActiveStep) => prevActiveStep + 1)
-        if (activeStep >= (maxSteps - 2)) {
-            setProgress(99.9)
-        } else {
-            setProgress(prevVal => prevVal + progress)
-        }
+
+        const newProgress = Math.min(progress + (100 / maxSteps), 100)
+        setProgress(lastStep === activeStep ? 100 : newProgress)
     }
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1)
-        setProgress(prevVal => {
-            if (activeStep !== maxSteps) return prevVal - progress
-            return 100
-        })
+        const newProgress = Math.max(progress - (100 / maxSteps), 0)
+        setProgress(newProgress)
     }
     return (
         <Box sx={{ maxWidth: '100%', flexGrow: 1 }}>
