@@ -167,7 +167,6 @@ const steps = ({ handleSelectedChoice }: any) => {
                             <ButtonGrid onClick={() => onClick(s)}>{s}</ButtonGrid>
                         </Grid>
                     ))}
-
                 </Grid>
                 {/* <div style={{ textAlign: 'center', marginTop: 50 }}>
                     <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>

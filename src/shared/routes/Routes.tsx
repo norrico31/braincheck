@@ -5,6 +5,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from '../../Pages/Home'
 import SelectRole from "../../Pages/SelectRole"
 import ViewResults from "../../Pages/ViewResults"
+import Subscribe from './../../Pages/Subscribe';
 
 const AnimatedPage = ({ variants, children }: { variants: Record<string, Record<string, string | number>>; children: ReactNode }) => {
 	return (
@@ -66,6 +67,7 @@ export default function Paths() {
 			<Route path="/" element={<AnimatedPage variants={homeVariants}><Home /></AnimatedPage>} />
 			<Route path="/select-role" element={<AnimatedPage variants={selectRoleVariants}><SelectRole /></AnimatedPage>} />
 			<Route path="/view-results" element={<AnimatedPage variants={selectRoleVariants}><ViewResults /></AnimatedPage>} />
+			<Route path="/subscribe" element={<AnimatedPage variants={selectRoleVariants}><Subscribe /></AnimatedPage>} />
 		</Routes>
 	</AnimatePresence>
 }
