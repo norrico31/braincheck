@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
 import LinearProgress from '@mui/material/LinearProgress'
@@ -17,7 +18,9 @@ import IconButton from '@mui/material/IconButton'
 import CheckIcon from '@mui/icons-material/Check'
 import Paper from '@mui/material/Paper'
 import CheckboxesGroup from './components/CheckboxGroup'
-
+import { TextField } from '@mui/material'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 function LinearWithValueLabel({ progress, handleProgress }: { progress: number; handleProgress: () => void }) {
     React.useEffect(() => {
         const timer = setInterval(handleProgress, 800)
@@ -45,6 +48,7 @@ const btnsFirstStep = [
     'Administrator',
     'Other',
 ]
+
 const btnsSecondStep = [
     'General internist',
     'Geritrician',
@@ -55,8 +59,27 @@ const btnsSecondStep = [
     'Other',
 ]
 
+const btnsConfidentLvl = [
+    'Not confident',
+    'Somewhat confident',
+    'Very Confident',
+]
+
 const steps = ({ handleSelectedChoice }: any) => {
-    const onClick = (b?: string) => handleSelectedChoice(b?.toLowerCase())
+    const onClick = (b?: string) => {
+        let value = undefined
+        if (typeof b === 'string') {
+            const strToSplit = b.toLowerCase()?.split(' ')
+            const strToUpperCase = strToSplit[1].slice(0, 1).toUpperCase()
+            value = strToSplit[0] + strToUpperCase + strToSplit[1].slice(1)
+        } else {
+            value = b
+        }
+        handleSelectedChoice(value)
+    }
+    const [minsOfAssessingResult, setMinsOfAssessingResult] = React.useState(90)
+    const [countPracticeConducting, setCountPracticeConducting] = React.useState(0)
+
     return [
         () => {
             return <div>
@@ -141,9 +164,9 @@ const steps = ({ handleSelectedChoice }: any) => {
                     ))}
 
                 </Grid>
-                <div style={{ textAlign: 'center', marginTop: 50 }}>
+                {/* <div style={{ textAlign: 'center', marginTop: 50 }}>
                     <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
-                </div>
+                </div> */}
             </div>
         },
         () => {
@@ -166,10 +189,8 @@ const steps = ({ handleSelectedChoice }: any) => {
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h6' >Please select all the ways you currently assess <br />cognitive health in your practice:</Typography>
             </Box>
-            <CheckboxesGroup />
-            <div style={{ textAlign: 'center', marginTop: 50 }}>
-                <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
-            </div>
+            <CheckboxesGroup onClick={onClick} />
+
         </div>,
         () => <div>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
@@ -188,6 +209,75 @@ const steps = ({ handleSelectedChoice }: any) => {
                 </Box>
             </div>
         </div>,
+        () => {
+            return <div>
+                <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                    <Typography variant='h4'>How much time do you usually spend assessing cognitive conditions and interpreting the results for each patient?</Typography>
+                </Box>
+                <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                    <TextField id="standard-basic" variant="standard" inputProps={{ style: { textAlign: 'center' } }}
+                        value={minsOfAssessingResult}
+                        onChange={e => setMinsOfAssessingResult(Number(e.target.value))}
+                    />
+                </Box>
+                <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
+                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(minsOfAssessingResult + '')}>Next</Button>
+                </div>
+                {/* <div style={{ textAlign: 'right' }}>
+                <Typography variant='caption' >Source: Product Update 2019</Typography>
+            </div> */}
+            </div>
+        },
+        () => {
+            return <div>
+                <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                    <Typography variant='h4'>How many people in your practice are conducting cognitive assessments?</Typography>
+                </Box>
+                <Box textAlign='center' sx={{ margin: '20px 0', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 5 }}>
+                    <IconButton children={<RemoveCircleIcon sx={{ height: 50, width: 50 }} />} size='large' onClick={() => {
+                        if (countPracticeConducting <= 0) return
+                        setCountPracticeConducting(prevValue => prevValue - 1)
+                    }} />
+                    <TextField id="outlined-size-normal" value={countPracticeConducting} inputProps={{ style: { textAlign: 'center' } }} />
+                    <IconButton children={<AddCircleIcon sx={{ height: 50, width: 50 }} />} size='large' onClick={() => {
+                        setCountPracticeConducting(prevValue => prevValue + 1)
+                    }} />
+                </Box>
+                <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
+                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(countPracticeConducting + '')}>Next</Button>
+                </div>
+            </div>
+        },
+        () => {
+            return <div>
+                <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                    <Typography variant='h4'>How confident are you discussing cognitive health with your patients?</Typography>
+                </Box>
+                <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                    <Typography variant='h6' >Select your confidence level</Typography>
+                </Box>
+                <Grid container display='flex' justifyContent='center' gap={1}>
+                    {btnsConfidentLvl.map((s) => (
+                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={s} textAlign='center'>
+                            <Button onClick={() => onClick(s)}>{s}</Button>
+                        </Grid>
+                    ))}
+                </Grid>
+            </div>
+        },
+        () => {
+            return <div>
+                <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                    <Typography variant='h4'>Thank you for your answers!</Typography>
+                </Box>
+                <Box textAlign='center' sx={{ margin: '20px 0' }}>
+                    <Typography variant='h6' >Now lets take a look ate your personalized insights</Typography>
+                </Box>
+                <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
+                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick('isViewResult')}>View Results</Button>
+                </div>
+            </div>
+        },
     ]
 }
 
@@ -196,15 +286,18 @@ function TextMobileStepper() {
     const maxSteps = steps({ handleSelectedChoice: () => null }).length
     const [progress, setProgress] = React.useState(maxSteps)
     const [activeStep, setActiveStep] = React.useState(0)
-    const [selectedRole, setSelectedRole] = React.useState<undefined | string>()
+    const [info, setInfo] = React.useState<undefined | Record<string, string | number>>()
     const [isOpenModalStart, setIsOpenModalStart] = React.useState(false)
 
-    console.log(progress)
+    console.log(info)
 
     const handleNext = () => {
+        if ((activeStep + 1) === maxSteps) {
+            // redirect to other page 
+            return
+        }
         const lastStep = maxSteps - 2;
         setActiveStep((prevActiveStep) => prevActiveStep + 1)
-
         const newProgress = Math.min(progress + (100 / maxSteps), 100)
         setProgress(lastStep === activeStep ? 100 : newProgress)
     }
@@ -214,6 +307,7 @@ function TextMobileStepper() {
         const newProgress = Math.max(progress - (100 / maxSteps), 0)
         setProgress(newProgress)
     }
+
     return (
         <Box sx={{ maxWidth: '100%', flexGrow: 1 }}>
             <LinearProgress variant="determinate" value={progress} />
@@ -245,18 +339,19 @@ function TextMobileStepper() {
             />
             {steps({
                 handleSelectedChoice: (b: string) => {
-                    if (b) {
-                        setSelectedRole(b)
-                    }
+                    setInfo({
+                        ...info,
+                        [activeStep]: b
+                    })
                     handleNext()
                 },
             })[activeStep]()}
 
             <ModalStartOver open={isOpenModalStart} handleClose={(isBack: boolean) => {
                 if (isBack) {
-                    setSelectedRole(undefined)
+                    setInfo(undefined)
                     setActiveStep(0)
-                    setProgress(33.33)
+                    setProgress(maxSteps)
                 }
                 setIsOpenModalStart(false)
             }} />

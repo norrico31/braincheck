@@ -12,7 +12,7 @@ type ButtonProps = {
     disabled: boolean
 }
 
-export default function MuiButton({ children, variant = 'text', color = 'primary', type = 'button', size = 'small', sx, onClick, disabled }: PropsWithChildren<Partial<ButtonProps>>) {
+export default function MuiButton({ children, variant = 'text', color = 'primary', type = 'button', size = 'large', sx, onClick, disabled }: PropsWithChildren<Partial<ButtonProps>>) {
     return (
         <Button
             variant={variant}
