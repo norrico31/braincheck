@@ -67,15 +67,19 @@ const btnsConfidentLvl = [
 
 const steps = ({ handleSelectedChoice }: any) => {
     const onClick = (b?: string) => {
-        let value = undefined
+        let v = undefined
         if (typeof b === 'string') {
-            const strToSplit = b.toLowerCase()?.split(' ')
-            const strToUpperCase = strToSplit[1].slice(0, 1).toUpperCase()
-            value = strToSplit[0] + strToUpperCase + strToSplit[1].slice(1)
+            if (b.includes(' ')) {
+                const str = b.toLowerCase()?.split(' ')
+                const strToUpperCase = str[1]?.slice(0, 1).toUpperCase()
+                v = str[0] + strToUpperCase + str[1]?.slice(1)
+            } else {
+                v = b?.toLowerCase()
+            }
         } else {
-            value = b
+            v = b
         }
-        handleSelectedChoice(value)
+        handleSelectedChoice(v)
     }
     const [minsOfAssessingResult, setMinsOfAssessingResult] = React.useState(90)
     const [countPracticeConducting, setCountPracticeConducting] = React.useState(0)
@@ -288,8 +292,6 @@ function TextMobileStepper() {
     const [activeStep, setActiveStep] = React.useState(0)
     const [info, setInfo] = React.useState<undefined | Record<string, string | number>>()
     const [isOpenModalStart, setIsOpenModalStart] = React.useState(false)
-
-    console.log(info)
 
     const handleNext = () => {
         if ((activeStep + 1) === maxSteps) {
