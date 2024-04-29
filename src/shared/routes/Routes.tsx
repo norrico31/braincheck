@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Home from '../../Pages/Home'
 import SelectRole from "../../Pages/SelectRole"
+import ViewResults from "../../Pages/ViewResults"
 
 const AnimatedPage = ({ variants, children }: { variants: Record<string, Record<string, string | number>>; children: ReactNode }) => {
 	return (
@@ -37,18 +38,18 @@ const homeVariants = {
 const selectRoleVariants = {
 	initial: {
 		opacity: 0,
-		scale: 0,
-		height: '100%'
+		// scale: 0,
+		// height: '100%'
 	},
 	in: {
 		opacity: 1,
-		scale: 1,
-		height: '100%'
+		// scale: 1,
+		// height: '100%'
 	},
 	out: {
 		opacity: 0,
-		scale: 0,
-		height: '100%'
+		// scale: 0,
+		// height: '100%'
 	}
 }
 
@@ -64,6 +65,7 @@ export default function Paths() {
 		<Routes location={location} key={location.pathname}>
 			<Route path="/" element={<AnimatedPage variants={homeVariants}><Home /></AnimatedPage>} />
 			<Route path="/select-role" element={<AnimatedPage variants={selectRoleVariants}><SelectRole /></AnimatedPage>} />
+			<Route path="/view-results" element={<AnimatedPage variants={selectRoleVariants}><ViewResults /></AnimatedPage>} />
 		</Routes>
 	</AnimatePresence>
 }

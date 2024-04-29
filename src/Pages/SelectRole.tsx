@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import LinearProgress from '@mui/material/LinearProgress'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
@@ -21,6 +22,7 @@ import CheckboxesGroup from './components/CheckboxGroup'
 import { TextField } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+
 function LinearWithValueLabel({ progress, handleProgress }: { progress: number; handleProgress: () => void }) {
     React.useEffect(() => {
         const timer = setInterval(handleProgress, 800)
@@ -140,7 +142,6 @@ const steps = ({ handleSelectedChoice }: any) => {
                             </Paper>
                         </Grid>
                     ))}
-
                 </Grid>
                 <div style={{ textAlign: 'center', marginTop: 50 }}>
                     <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
@@ -206,9 +207,11 @@ const steps = ({ handleSelectedChoice }: any) => {
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h6' >It's easy and accessible for your patients and integrates seamlessly into your workflows.</Typography>
             </Box>
-            <div style={{ marginTop: 50, display: 'grid', placeItems: 'end' }}>
-                <Box width='50%' display='flex' justifyContent='space-between' alignItems='center'>
+            <div style={{ marginTop: 50 }}>
+                <Box display='flex' justifyContent='center'>
                     <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
+                </Box>
+                <Box display='flex' justifyContent='end'>
                     <Typography variant='caption' >Source: Product Update 2019</Typography>
                 </Box>
             </div>
@@ -227,9 +230,6 @@ const steps = ({ handleSelectedChoice }: any) => {
                 <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
                     <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(minsOfAssessingResult + '')}>Next</Button>
                 </div>
-                {/* <div style={{ textAlign: 'right' }}>
-                <Typography variant='caption' >Source: Product Update 2019</Typography>
-            </div> */}
             </div>
         },
         () => {
@@ -278,87 +278,13 @@ const steps = ({ handleSelectedChoice }: any) => {
                     <Typography variant='h6' >Now lets take a look ate your personalized insights</Typography>
                 </Box>
                 <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
-                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick('isViewResult')}>View Results</Button>
+                    <Link to='/view-results'>
+                        View Results
+                    </Link>
                 </div>
             </div>
         },
     ]
-}
-
-function TextMobileStepper() {
-    const theme = useTheme() as any
-    const maxSteps = steps({ handleSelectedChoice: () => null }).length
-    const [progress, setProgress] = React.useState(maxSteps)
-    const [activeStep, setActiveStep] = React.useState(0)
-    const [info, setInfo] = React.useState<undefined | Record<string, string | number>>()
-    const [isOpenModalStart, setIsOpenModalStart] = React.useState(false)
-
-    const handleNext = () => {
-        if ((activeStep + 1) === maxSteps) {
-            // redirect to other page 
-            return
-        }
-        const lastStep = maxSteps - 2;
-        setActiveStep((prevActiveStep) => prevActiveStep + 1)
-        const newProgress = Math.min(progress + (100 / maxSteps), 100)
-        setProgress(lastStep === activeStep ? 100 : newProgress)
-    }
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1)
-        const newProgress = Math.max(progress - (100 / maxSteps), 0)
-        setProgress(newProgress)
-    }
-
-    return (
-        <Box sx={{ maxWidth: '100%', flexGrow: 1 }}>
-            <LinearProgress variant="determinate" value={progress} />
-            <MobileStepper
-                variant="text"
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                nextButton={
-                    <Button
-                        size="small"
-                        onClick={() => setIsOpenModalStart(true)}
-                        disabled={activeStep === 0}
-                    >
-                        <HomeIcon />
-                        Home
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme?.direction === 'rtl' ? (
-                            <KeyboardArrowRight />
-                        ) : (
-                            <KeyboardArrowLeft />
-                        )}
-                        Go back
-                    </Button>
-                }
-            />
-            {steps({
-                handleSelectedChoice: (b: string) => {
-                    setInfo({
-                        ...info,
-                        [activeStep]: b
-                    })
-                    handleNext()
-                },
-            })[activeStep]()}
-
-            <ModalStartOver open={isOpenModalStart} handleClose={(isBack: boolean) => {
-                if (isBack) {
-                    setInfo(undefined)
-                    setActiveStep(0)
-                    setProgress(maxSteps)
-                }
-                setIsOpenModalStart(false)
-            }} />
-        </Box>
-    )
 }
 
 function ButtonGrid({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
@@ -415,6 +341,82 @@ const Paragraph = ({ children, id }: { id: string; children: React.ReactNode }) 
     </Typography>
 }
 
+function TextMobileStepper() {
+    const theme = useTheme() as any
+    const maxSteps = steps({ handleSelectedChoice: () => null }).length
+    const [progress, setProgress] = React.useState(maxSteps)
+    const [activeStep, setActiveStep] = React.useState(0)
+    const [info, setInfo] = React.useState<undefined | Record<string, string | number>>()
+    const [isOpenModalStart, setIsOpenModalStart] = React.useState(false)
+
+    const handleNext = () => {
+        if ((activeStep + 1) === maxSteps) {
+            // redirect to other page 
+            return
+        }
+        const lastStep = maxSteps - 2;
+        setActiveStep((prevActiveStep) => prevActiveStep + 1)
+        const newProgress = Math.min(progress + (100 / maxSteps), 100)
+        setProgress(lastStep === activeStep ? 100 : newProgress)
+    }
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1)
+        const newProgress = Math.max(progress - (100 / maxSteps), 0)
+        setProgress(newProgress)
+    }
+
+    return (
+        <Container maxWidth='lg' >
+            <LinearProgress variant="determinate" value={progress} />
+            <MobileStepper
+                variant="text"
+                steps={maxSteps}
+                position="static"
+                activeStep={activeStep}
+                nextButton={
+                    <Button
+                        size="small"
+                        onClick={() => setIsOpenModalStart(true)}
+                        disabled={activeStep === 0}
+                    >
+                        <HomeIcon />
+                        Home
+                    </Button>
+                }
+                backButton={
+                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                        {theme?.direction === 'rtl' ? (
+                            <KeyboardArrowRight />
+                        ) : (
+                            <KeyboardArrowLeft />
+                        )}
+                        Go back
+                    </Button>
+                }
+            />
+            {steps({
+                handleSelectedChoice: (b: string) => {
+                    setInfo({
+                        ...info,
+                        [activeStep]: b
+                    })
+                    handleNext()
+                },
+            })[activeStep]()}
+
+            <ModalStartOver open={isOpenModalStart} handleClose={(isBack: boolean) => {
+                if (isBack) {
+                    setInfo(undefined)
+                    setActiveStep(0)
+                    setProgress(maxSteps)
+                }
+                setIsOpenModalStart(false)
+            }} />
+        </Container>
+    )
+}
+
 export default function SelectRole() {
     const [progress, setProgress] = React.useState(0)
 
@@ -423,7 +425,7 @@ export default function SelectRole() {
             <TextMobileStepper />
         </Box>
     ) : (
-        <Container maxWidth='lg' sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <Container sx={{ height: '100svh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <LinearWithValueLabel progress={progress} handleProgress={() => setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 33))} />
         </Container>
     )
