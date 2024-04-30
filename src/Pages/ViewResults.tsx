@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import CachedIcon from '@mui/icons-material/Cached';
 import CloseIcon from '@mui/icons-material/Close';
-import { AppBar, Dialog, FormControlLabel, Grid, IconButton, Paper, styled, Switch, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@mui/material'
+import { AppBar, Dialog, FormControlLabel, Grid, IconButton, Menu, MenuItem, Paper, styled, Switch, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@mui/material'
 import { Button, Carousel, CollapseAccordion, ImageCard } from './components'
 import { Link } from 'react-router-dom'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -250,10 +250,46 @@ export default function ViewResult() {
                     <Box mt={10} display='flex'>
                         <Box width='30%'>
                             <Typography variant='h4'><b>FAQs</b></Typography>
-
                         </Box>
                         <Box width='70%' >
                             <CollapseAccordion />
+                        </Box>
+                    </Box>
+                </Container>
+            </Box>
+            <Box sx={{ background: '#dff5d2ec', padding: '4rem 5px', textAlign: 'center' }}>
+                <Container maxWidth='lg' >
+                    <Box>
+                        <Typography variant='h4'>Need more support?</Typography>
+                        <Typography variant='h6' component='p'>Get in touch with using our contact form or calling us directly</Typography>
+                        <Button sx={{
+                            marginTop: 3, background: 'transparent', border: '1px solid #000', borderRadius: 3, padding: '8px 24px', '&:hover': {
+                                background: '#e4e4e4'
+                            }
+                        }}>Contact us</Button>
+                    </Box>
+                </Container>
+            </Box>
+            <Box sx={{ background: '#000', color: '#fff', padding: '4rem 5px' }}>
+                <Container maxWidth='md'>
+                    <Box display='flex' gap={8}>
+                        <Box display='grid' gap={2}>
+                            <Typography variant='h6' component='p'>Menu</Typography>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</Link>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</Link>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</Link>
+                        </Box>
+                        <Box display='grid' gap={2}>
+                            <Typography variant='h6' component='p'>Menu 2</Typography>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</Link>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</Link>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</Link>
+                        </Box>
+                        <Box display='grid' gap={2}>
+                            <Typography variant='h6' component='p'>Menu 3</Typography>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</Link>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</Link>
+                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</Link>
                         </Box>
                     </Box>
                 </Container>
