@@ -15,6 +15,7 @@ import DiagramPng from '../shared/assets/diagram.png'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import ImageCard from './components/ImageCard';
+import Carousel from './components/Carousel';
 
 export default function ViewResult() {
     const [openModal, setOpenModal] = useState(false)
@@ -231,6 +232,9 @@ export default function ViewResult() {
                             </Grid>
                         </Grid>
                     </Container>
+                </Container>
+                <Container maxWidth='lg'>
+                    <Carousel />
                 </Container>
             </Box>
         </>
