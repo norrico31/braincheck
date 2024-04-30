@@ -202,16 +202,47 @@ export default function ViewResult() {
                         <ImageCard />
                     </Grid>
                 </Container>
+                <Container maxWidth='lg' sx={{ marginTop: 15 }}>
+                    <Typography variant='h4'>Maximize your BrainCheck experience</Typography>
+                    <Container maxWidth='lg' sx={{ margin: '2rem auto' }}>
+                        <Grid container spacing={2} mt='10px' padding={5}>
+                            <Grid item xs={15} sm={14} md={6} zeroMinWidth>
+                                <Item sx={{ background: '#ecf0c7ed' }}>
+                                    <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Guide</Typography>
+                                    <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />Explaining BrainCheck results to patients</Typography>
+                                    <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>These educational resources can help provider <br /> learn more about remote cognitive testing and care</Typography>
+                                    <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
+                                        Download
+                                        <ArrowDownwardIcon />
+                                    </Button>
+                                </Item>
+                            </Grid>
+                            <Grid item xs={15} sm={14} md={6} zeroMinWidth>
+                                <Item sx={{ background: '#ecf0c7ed' }}>
+                                    <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Guide</Typography>
+                                    <Typography noWrap variant='h6' component='p'>Clinical user guide</Typography>
+                                    <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>These educational resources can help provider <br /> learn more about remote cognitive testing and care</Typography>
+                                    <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} margin='10px 0'>18 May 2020</Typography>
+                                    <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
+                                        Download
+                                        <ArrowDownwardIcon />
+                                    </Button>
+                                </Item>
+                            </Grid>
+                        </Grid>
+                    </Container>
+                </Container>
             </Box>
         </>
     )
 }
 
 function ToggleSwitch() {
-    const [isToggle, setIsToggle] = useState(false);
+    const [isToggle, setIsToggle] = useState(false)
     return <FormControlLabel
-
-        control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked
+        control={<MaterialUISwitch
+            sx={{ m: 1 }}
+            defaultChecked
             value={isToggle}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIsToggle(e.target.checked)}
         />}

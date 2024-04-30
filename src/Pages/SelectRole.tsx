@@ -136,7 +136,7 @@ const steps = ({ handleSelectedChoice }: any) => {
                 <Grid container display='flex' justifyContent='center' gap={1}>
                     {new Array(4).fill(null).map((_, idx) => (
                         <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={idx}>
-                            <Paper elevation={2} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', minHeight: 200, gap: 3 }}>
+                            <Paper elevation={2} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', minHeight: 200, gap: 3, background: '#eee' }}>
                                 <CheckIcon />
                                 Col {idx + 1}
                             </Paper>
@@ -262,7 +262,7 @@ const steps = ({ handleSelectedChoice }: any) => {
                 <Grid container display='flex' justifyContent='center' gap={1}>
                     {btnsConfidentLvl.map((s) => (
                         <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={s} textAlign='center'>
-                            <Button onClick={() => onClick(s)}>{s}</Button>
+                            <Button onClick={() => onClick(s)} sx={{ background: '#eee' }}>{s}</Button>
                         </Grid>
                     ))}
                 </Grid>
@@ -277,7 +277,7 @@ const steps = ({ handleSelectedChoice }: any) => {
                     <Typography variant='h6' >Now lets take a look ate your personalized insights</Typography>
                 </Box>
                 <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
-                    <Link to='/view-results'>
+                    <Link to='/view-results' style={{ textDecoration: 'none', color: '#000', display: 'inline-block', padding: '10px 12px', background: '#ffea2f', border: '1px solid #000', borderRadius: 10, fontSize: 32 }}>
                         View Results
                     </Link>
                 </div>
@@ -287,7 +287,7 @@ const steps = ({ handleSelectedChoice }: any) => {
 }
 
 function ButtonGrid({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
-    return <Button sx={{ width: '100%', height: '150px', background: 'lime' }} onClick={onClick}>{children}</Button>
+    return <Button sx={{ width: '100%', height: '150px', background: '#dff5d2ec' }} onClick={onClick}>{children}</Button>
 }
 
 function ModalStartOver({ open, handleClose }: { open: boolean; handleClose: (isBack: boolean) => void }) {
@@ -349,10 +349,7 @@ function TextMobileStepper() {
     const [isOpenModalStart, setIsOpenModalStart] = React.useState(false)
 
     const handleNext = () => {
-        if ((activeStep + 1) === maxSteps) {
-            // redirect to other page 
-            return
-        }
+        if ((activeStep + 1) === maxSteps) return
         const lastStep = maxSteps - 2;
         setActiveStep((prevActiveStep) => prevActiveStep + 1)
         const newProgress = Math.min(progress + (100 / maxSteps), 100)

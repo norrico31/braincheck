@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -12,7 +11,6 @@ import { Button } from '.';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function ImageCard() {
-
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia

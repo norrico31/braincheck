@@ -56,7 +56,6 @@ export default function Home() {
     const [isOpenModal, setisOpenModal] = useState(false);
     return (
         <Box sx={{ height: '100svh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            {/* <Box> */}
             <Box display='flex' justifyContent='space-between' alignItems='center' gap={4} flexDirection='column'>
                 <Typography
                     component="h2"
@@ -64,14 +63,13 @@ export default function Home() {
                 >
                     BrainCheck
                 </Typography>
-                <Link to='/select-role'>Get Started</Link>
+                <Link to='/select-role' style={{ textDecoration: 'none', color: '#000', display: 'inline-block', padding: '10px 12px', background: '#ffea2f', border: '1px solid #000', borderRadius: 10, fontSize: 36 }}>Get Started</Link>
                 <Button size='small' onClick={() => setisOpenModal(true)}>More about ROI calculator</Button>
             </Box>
             <ModalAbout
                 open={isOpenModal}
                 handleClose={() => setisOpenModal(false)}
             />
-            {/* </Box> */}
         </Box>
     )
 }

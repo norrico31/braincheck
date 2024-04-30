@@ -6,7 +6,7 @@ import Theme from './shared/contexts/Theme.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <Theme>
-    <Router>
+    <Router basename='/'>
       <App />
     </Router>
   </Theme>
