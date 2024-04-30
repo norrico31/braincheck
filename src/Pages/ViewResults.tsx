@@ -6,7 +6,7 @@ import Container from '@mui/material/Container'
 import CachedIcon from '@mui/icons-material/Cached';
 import CloseIcon from '@mui/icons-material/Close';
 import { AppBar, Dialog, FormControlLabel, Grid, IconButton, Paper, styled, Switch, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@mui/material'
-import { Button } from './components'
+import { Button, Carousel, CollapseAccordion, ImageCard } from './components'
 import { Link } from 'react-router-dom'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -14,8 +14,6 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import DiagramPng from '../shared/assets/diagram.png'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import ImageCard from './components/ImageCard';
-import Carousel from './components/Carousel';
 
 export default function ViewResult() {
     const [openModal, setOpenModal] = useState(false)
@@ -236,9 +234,43 @@ export default function ViewResult() {
                 <Container maxWidth='lg'>
                     <Carousel />
                 </Container>
+                <Container maxWidth='lg'>
+                    <Box mt={10}>
+                        <Typography variant='h4'>Get the latest on Brain health</Typography>
+                        <Typography variant='h6' component='p'>Join a network of specialists focused on advancing the field of cognitive <br />health, and get expert strategies to build cognitive resilience.</Typography>
+                    </Box>
+                    <Box margin='20px auto' width='30%' >
+                        <EmailSubscribe />
+                    </Box>
+                    <Box>
+                        <Typography variant='caption' sx={{ color: '#757575' }}>We're committed to your privacy and will not share your data with third parties. <br /> See our <b><Link to='/privacy-policy' style={{ color: 'inherit' }}>Privacy Policy</Link></b></Typography>
+                    </Box>
+                </Container>
+                <Container maxWidth='lg'>
+                    <Box mt={10} display='flex'>
+                        <Box width='30%'>
+                            <Typography variant='h4'><b>FAQs</b></Typography>
+
+                        </Box>
+                        <Box width='70%' >
+                            <CollapseAccordion />
+                        </Box>
+                    </Box>
+                </Container>
             </Box>
         </>
     )
+}
+
+function EmailSubscribe() {
+    return <>
+        <TextField id="standard-basic" label="Full Name*" variant="standard" sx={{ marginTop: 5, width: '100%' }} />
+        <Button sx={{
+            marginTop: 3, background: '#000', color: '#fff', borderRadius: 3, padding: '8px 24px', '&:hover': {
+                background: '#686868'
+            }
+        }}>Subscribe</Button>
+    </>
 }
 
 function ToggleSwitch() {
@@ -256,7 +288,7 @@ function ToggleSwitch() {
 
 function DataTable() {
     return (
-        <Box margin='30px 0'>
+        <Box margin='100px 0'>
             {/* <DataGrid
                 rows={rows}
                 columns={columns}
@@ -420,7 +452,6 @@ const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: '2rem',
     color: theme.palette.text.secondary,
-    // minHeight: 150,
     textAlign: 'left'
 }));
 

@@ -68,7 +68,7 @@ export default function Carousel() {
                                 <Box
                                     component="img"
                                     sx={{
-                                        height: 255,
+                                        height: 400,
                                         display: 'block',
                                         overflow: 'hidden',
                                         width: '100%',

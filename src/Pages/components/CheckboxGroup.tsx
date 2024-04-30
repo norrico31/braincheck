@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Button } from '.';
 
-export default function CheckboxesGroup(props: any) {
+export default function CheckboxGroup(props: any) {
 	const [checkboxState, setCheckboxState] = React.useState({
 		paperScreeners: false,
 		preliminaryAssess: false,

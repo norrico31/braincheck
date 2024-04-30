@@ -1,1 +1,5 @@
 export { default as Button } from './Button'
+export { default as Carousel } from './Carousel'
+export { default as CheckboxGroup } from './CheckboxGroup'
+export { default as CollapseAccordion } from './CollapseAccordion'
+export { default as ImageCard } from './ImageCard'
