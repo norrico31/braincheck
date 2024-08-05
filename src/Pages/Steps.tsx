@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import MobileStepper from '@mui/material/MobileStepper'
 import { useTheme } from '@emotion/react'
-import { Button, StepEight, StepFive, StepFour, StepNine, StepOne, StepSeven, StepSix, StepThree, StepTwo } from './components'
+import { Button, StepEight, StepEleven, StepFive, StepFour, StepNine, StepOne, StepSeven, StepSix, StepTen, StepThree, StepTwo } from './components'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
@@ -39,12 +39,6 @@ function LinearWithValueLabel({ progress, handleProgress }: { progress: number; 
         </Box>
     </Box>
 }
-
-const btnsConfidentLvl = [
-    'Not confident',
-    'Somewhat confident',
-    'Very Confident',
-]
 
 const steps = ({ handleSelectedChoice }: any) => {
     const onClick = (b?: string) => {
@@ -84,38 +78,8 @@ const steps = ({ handleSelectedChoice }: any) => {
                 setCountPracticeConducting(prevValue => prevValue - 1)
             }}
             onClick={() => onClick(countPracticeConducting + '')} />,
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>How confident are you discussing cognitive health with your patients?</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h6' >Select your confidence level</Typography>
-                </Box>
-                <Grid container display='flex' justifyContent='center' gap={1}>
-                    {btnsConfidentLvl.map((s) => (
-                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={s} textAlign='center'>
-                            <Button onClick={() => onClick(s)} sx={{ background: '#eee' }}>{s}</Button>
-                        </Grid>
-                    ))}
-                </Grid>
-            </div>
-        },
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>Thank you for your answers!</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h6' >Now lets take a look ate your personalized insights</Typography>
-                </Box>
-                <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
-                    <Link to='/view-results' style={{ textDecoration: 'none', color: '#000', display: 'inline-block', padding: '10px 12px', background: '#ffea2f', border: '1px solid #000', borderRadius: 10, fontSize: 32 }}>
-                        View Results
-                    </Link>
-                </div>
-            </div>
-        },
+        () => <StepTen onClick={onClick} />,
+        () => <StepEleven onClick={onClick} />,
     ]
 }
 
