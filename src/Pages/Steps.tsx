@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import MobileStepper from '@mui/material/MobileStepper'
 import { useTheme } from '@emotion/react'
-import { Button, StepFive, StepFour, StepOne, StepSeven, StepSix, StepThree, StepTwo } from './components'
+import { Button, StepEight, StepFive, StepFour, StepOne, StepSeven, StepSix, StepThree, StepTwo } from './components'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
@@ -73,6 +73,7 @@ const steps = ({ handleSelectedChoice }: any) => {
         () => <StepFive onClick={onClick} />,
         () => <StepSix onClick={onClick} />,
         () => <StepSeven onClick={onClick} />,
+        () => <StepEight minsOfAssessingResult={minsOfAssessingResult} setMinsOfAssessingResult={setMinsOfAssessingResult} onClick={onClick} />,
         () => {
             return <div>
                 <Box textAlign='center' sx={{ margin: '20px 0' }}>
