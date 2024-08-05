@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import MobileStepper from '@mui/material/MobileStepper'
 import { useTheme } from '@emotion/react'
-import { Button, StepOne } from './components'
+import { Button, StepOne, StepThree, StepTwo } from './components'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
@@ -43,16 +43,6 @@ function LinearWithValueLabel({ progress, handleProgress }: { progress: number; 
     </Box>
 }
 
-const btnsSecondStep = [
-    'General internist',
-    'Geritrician',
-    'Neurologist',
-    'Family doctor',
-    'Neuropsychologist',
-    'Psychiatrist',
-    'Other',
-]
-
 const btnsConfidentLvl = [
     'Not confident',
     'Somewhat confident',
@@ -80,48 +70,8 @@ const steps = ({ handleSelectedChoice }: any) => {
 
     return [
         () => <StepOne onClick={onClick} />,
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>Tell us about your area of expertise</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h6' >Choose your specialization to see how BrainCheck can help you save time and equip you with your clear answers for your patients.</Typography>
-                </Box>
-                <Grid container display='flex' justifyContent='center' gap={1}>
-                    {btnsSecondStep.map((s) => (
-                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={s}>
-                            <Paper>
-                                <ButtonGrid onClick={() => onClick(s)}>{s}</ButtonGrid>
-                            </Paper>
-                        </Grid>
-                    ))}
-                </Grid>
-            </div>
-        },
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>Here are just a few ways BrainCheck can benefit your work as General Internist</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h6' >Choose your specialization to see how BrainCheck can help you save time and equip you with your clear answers for your patients.</Typography>
-                </Box>
-                <Grid container display='flex' justifyContent='center' gap={1}>
-                    {new Array(4).fill(null).map((_, idx) => (
-                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={idx}>
-                            <Paper elevation={2} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', minHeight: 200, gap: 3, background: '#eee' }}>
-                                <CheckIcon />
-                                Col {idx + 1}
-                            </Paper>
-                        </Grid>
-                    ))}
-                </Grid>
-                <div style={{ textAlign: 'center', marginTop: 50 }}>
-                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
-                </div>
-            </div>
-        },
+        () => <StepTwo onClick={onClick} />,
+        () => <StepThree onClick={onClick} />,
         () => {
             return <div>
                 <Box textAlign='center' sx={{ margin: '20px 0' }}>
