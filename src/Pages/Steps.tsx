@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import MobileStepper from '@mui/material/MobileStepper'
 import { useTheme } from '@emotion/react'
-import { Button, StepEight, StepFive, StepFour, StepOne, StepSeven, StepSix, StepThree, StepTwo } from './components'
+import { Button, StepEight, StepFive, StepFour, StepNine, StepOne, StepSeven, StepSix, StepThree, StepTwo } from './components'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
@@ -74,42 +74,16 @@ const steps = ({ handleSelectedChoice }: any) => {
         () => <StepSix onClick={onClick} />,
         () => <StepSeven onClick={onClick} />,
         () => <StepEight minsOfAssessingResult={minsOfAssessingResult} setMinsOfAssessingResult={setMinsOfAssessingResult} onClick={onClick} />,
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>How much time do you usually spend assessing cognitive conditions and interpreting the results for each patient?</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <TextField id="standard-basic" variant="standard" inputProps={{ style: { textAlign: 'center' } }}
-                        value={minsOfAssessingResult}
-                        onChange={e => setMinsOfAssessingResult(Number(e.target.value))}
-                    />
-                </Box>
-                <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
-                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(minsOfAssessingResult + '')}>Next</Button>
-                </div>
-            </div>
-        },
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>How many people in your practice are conducting cognitive assessments?</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 5 }}>
-                    <IconButton children={<RemoveCircleIcon sx={{ height: 50, width: 50 }} />} size='large' onClick={() => {
-                        if (countPracticeConducting <= 0) return
-                        setCountPracticeConducting(prevValue => prevValue - 1)
-                    }} />
-                    <TextField id="outlined-size-normal" value={countPracticeConducting} inputProps={{ style: { textAlign: 'center' } }} />
-                    <IconButton children={<AddCircleIcon sx={{ height: 50, width: 50 }} />} size='large' onClick={() => {
-                        setCountPracticeConducting(prevValue => prevValue + 1)
-                    }} />
-                </Box>
-                <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
-                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(countPracticeConducting + '')}>Next</Button>
-                </div>
-            </div>
-        },
+        () => <StepNine
+            countPracticeConducting={countPracticeConducting}
+            handleAdd={() => {
+                setCountPracticeConducting(prevValue => prevValue + 1)
+            }}
+            handleRemove={() => {
+                if (countPracticeConducting <= 0) return
+                setCountPracticeConducting(prevValue => prevValue - 1)
+            }}
+            onClick={() => onClick(countPracticeConducting + '')} />,
         () => {
             return <div>
                 <Box textAlign='center' sx={{ margin: '20px 0' }}>
