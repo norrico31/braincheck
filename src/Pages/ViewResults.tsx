@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import CachedIcon from '@mui/icons-material/Cached';
 import CloseIcon from '@mui/icons-material/Close';
-import { AppBar, Dialog, FormControlLabel, Grid, IconButton, Menu, MenuItem, Paper, styled, Switch, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@mui/material'
+import { AppBar, Dialog, FormControlLabel, Grid, IconButton, Paper, styled, Switch, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@mui/material'
 import { Button, Carousel, CollapseAccordion, ImageCard } from './components'
 import { Link } from 'react-router-dom'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';

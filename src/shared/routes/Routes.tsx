@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Home from '../../Pages/Home'
-import SelectRole from "../../Pages/SelectRole"
+import Steps from "../../Pages/Steps"
 import ViewResults from "../../Pages/ViewResults"
 import Subscribe from './../../Pages/Subscribe';
 
@@ -65,7 +65,7 @@ export default function Paths() {
 	return <AnimatePresence mode='wait'>
 		<Routes location={location} key={location.pathname}>
 			<Route path="/" element={<AnimatedPage variants={homeVariants}><Home /></AnimatedPage>} />
-			<Route path="/select-role" element={<AnimatedPage variants={selectRoleVariants}><SelectRole /></AnimatedPage>} />
+			<Route path="/steps" element={<AnimatedPage variants={selectRoleVariants}><Steps /></AnimatedPage>} />
 			<Route path="/view-results" element={<AnimatedPage variants={selectRoleVariants}><ViewResults /></AnimatedPage>} />
 			<Route path="/subscribe" element={<AnimatedPage variants={selectRoleVariants}><Subscribe /></AnimatedPage>} />
 		</Routes>

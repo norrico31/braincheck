@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import MobileStepper from '@mui/material/MobileStepper'
 import { useTheme } from '@emotion/react'
-import { Button } from './components'
+import { Button, StepOne } from './components'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
@@ -42,14 +42,6 @@ function LinearWithValueLabel({ progress, handleProgress }: { progress: number; 
         </Box>
     </Box>
 }
-
-const btnsFirstStep = [
-    'Practitioner',
-    'Nurse',
-    'Technician',
-    'Administrator',
-    'Other',
-]
 
 const btnsSecondStep = [
     'General internist',
@@ -87,25 +79,7 @@ const steps = ({ handleSelectedChoice }: any) => {
     const [countPracticeConducting, setCountPracticeConducting] = React.useState(0)
 
     return [
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>A Personalized solution build around you</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h6' >Select your role to find how BrainCheck can <br /> empower your practice</Typography>
-                </Box>
-                <Grid container display='flex' justifyContent='center' gap={1}>
-                    {btnsFirstStep.map((s) => (
-                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={s}>
-                            <Paper>
-                                <ButtonGrid onClick={() => onClick(s)}>{s}</ButtonGrid>
-                            </Paper>
-                        </Grid>
-                    ))}
-                </Grid>
-            </div>
-        },
+        () => <StepOne onClick={onClick} />,
         () => {
             return <div>
                 <Box textAlign='center' sx={{ margin: '20px 0' }}>

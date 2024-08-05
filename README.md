@@ -23,7 +23,7 @@ An in-depth paragraph about your project and overview of use.
 * First cd into the repo
 * Install node_modules
 ```
-npm install
+npm install --force
 ```
 
 ### Executing program
