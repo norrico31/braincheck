@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import MobileStepper from '@mui/material/MobileStepper'
 import { useTheme } from '@emotion/react'
-import { Button, StepFive, StepFour, StepOne, StepThree, StepTwo } from './components'
+import { Button, StepFive, StepFour, StepOne, StepSix, StepThree, StepTwo } from './components'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
@@ -72,16 +72,7 @@ const steps = ({ handleSelectedChoice }: any) => {
         () => <StepThree onClick={onClick} />,
         () => <StepFour onClick={onClick} />,
         () => <StepFive onClick={onClick} />,
-        () => <div>
-            <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                <Typography variant='h4'>Enhance your cognitive toolset</Typography>
-            </Box>
-            <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                <Typography variant='h6' >Please select all the ways you currently assess <br />cognitive health in your practice:</Typography>
-            </Box>
-            <CheckboxesGroup onClick={onClick} />
-
-        </div>,
+        () => <StepSix onClick={onClick} />,
         () => <div>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>Faster and easier than paper tests</Typography>
