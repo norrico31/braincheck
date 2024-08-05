@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as React from 'react'
+import { useState, useEffect, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import LinearProgress from '@mui/material/LinearProgress'
 import Typography from '@mui/material/Typography'
@@ -9,22 +9,20 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import MobileStepper from '@mui/material/MobileStepper'
 import { useTheme } from '@emotion/react'
-import { Button, StepOne, StepThree, StepTwo } from './components'
+import { Button, StepFive, StepFour, StepOne, StepThree, StepTwo } from './components'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
 import Slide from '@mui/material/Slide'
 import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton'
-import CheckIcon from '@mui/icons-material/Check'
-import Paper from '@mui/material/Paper'
 import CheckboxesGroup from './components/CheckboxGroup'
 import { TextField } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 function LinearWithValueLabel({ progress, handleProgress }: { progress: number; handleProgress: () => void }) {
-    React.useEffect(() => {
+    useEffect(() => {
         const timer = setInterval(handleProgress, 800)
         return () => {
             clearInterval(timer)
@@ -65,51 +63,15 @@ const steps = ({ handleSelectedChoice }: any) => {
         }
         handleSelectedChoice(v)
     }
-    const [minsOfAssessingResult, setMinsOfAssessingResult] = React.useState(90)
-    const [countPracticeConducting, setCountPracticeConducting] = React.useState(0)
+    const [minsOfAssessingResult, setMinsOfAssessingResult] = useState(90)
+    const [countPracticeConducting, setCountPracticeConducting] = useState(0)
 
     return [
         () => <StepOne onClick={onClick} />,
         () => <StepTwo onClick={onClick} />,
         () => <StepThree onClick={onClick} />,
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>Now let's talk about your patients</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h6' >To accurately calculate your annual revenue with BrainCheck, <br /> how many of your patients are over 65?</Typography>
-                </Box>
-                <Grid container display='flex' justifyContent='center' gap={1}>
-                    {[
-                        '0-20%',
-                        '20-40%',
-                        '40-60%',
-                        'Over 60%',
-                    ].map((s, idx) => (
-                        <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={idx}>
-                            <ButtonGrid onClick={() => onClick(s)}>{s}</ButtonGrid>
-                        </Grid>
-                    ))}
-                </Grid>
-                {/* <div style={{ textAlign: 'center', marginTop: 50 }}>
-                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
-                </div> */}
-            </div>
-        },
-        () => {
-            return <div>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>With BrainCheck, it takes you just 15 minutes to do fast, reliable cognitive assessments for your patients.</Typography>
-                </Box>
-                <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                    <Typography variant='h4'>Fully reimbursable and life-changing.</Typography>
-                </Box>
-                <div style={{ textAlign: 'center', marginTop: 50 }}>
-                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
-                </div>
-            </div>
-        },
+        () => <StepFour onClick={onClick} />,
+        () => <StepFive onClick={onClick} />,
         () => <div>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>Enhance your cognitive toolset</Typography>
@@ -210,10 +172,6 @@ const steps = ({ handleSelectedChoice }: any) => {
     ]
 }
 
-function ButtonGrid({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
-    return <Button sx={{ width: '100%', height: '150px', background: '#dff5d2ec' }} onClick={onClick}>{children}</Button>
-}
-
 function ModalStartOver({ open, handleClose }: { open: boolean; handleClose: (isBack: boolean) => void }) {
     return <Modal
         open={open}
@@ -258,7 +216,7 @@ const style = {
     p: 4,
 }
 
-const Paragraph = ({ children, id }: { id: string; children: React.ReactNode }) => {
+const Paragraph = ({ children, id }: { id: string; children: ReactNode }) => {
     return <Typography id={id} sx={{ mt: 2, letterSpacing: 0, fontSize: 14, width: 300, textAlign: 'center' }}>
         {children}
     </Typography>
@@ -267,10 +225,10 @@ const Paragraph = ({ children, id }: { id: string; children: React.ReactNode }) 
 function TextMobileStepper() {
     const theme = useTheme() as any
     const maxSteps = steps({ handleSelectedChoice: () => null }).length
-    const [progress, setProgress] = React.useState(maxSteps)
-    const [activeStep, setActiveStep] = React.useState(0)
-    const [info, setInfo] = React.useState<undefined | Record<string, string | number>>()
-    const [isOpenModalStart, setIsOpenModalStart] = React.useState(false)
+    const [progress, setProgress] = useState(maxSteps)
+    const [activeStep, setActiveStep] = useState(0)
+    const [info, setInfo] = useState<undefined | Record<string, string | number>>()
+    const [isOpenModalStart, setIsOpenModalStart] = useState(false)
 
     const handleNext = () => {
         if ((activeStep + 1) === maxSteps) return
@@ -337,8 +295,8 @@ function TextMobileStepper() {
     )
 }
 
-export default function SelectRole() {
-    const [progress, setProgress] = React.useState(0)
+export default function Steps() {
+    const [progress, setProgress] = useState(0)
 
     return progress >= 100 ? (
         <Box pt={3}>
