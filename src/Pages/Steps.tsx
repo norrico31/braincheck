@@ -9,14 +9,13 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import MobileStepper from '@mui/material/MobileStepper'
 import { useTheme } from '@emotion/react'
-import { Button, StepFive, StepFour, StepOne, StepSix, StepThree, StepTwo } from './components'
+import { Button, StepFive, StepFour, StepOne, StepSeven, StepSix, StepThree, StepTwo } from './components'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
 import Slide from '@mui/material/Slide'
 import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton'
-import CheckboxesGroup from './components/CheckboxGroup'
 import { TextField } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
@@ -73,25 +72,7 @@ const steps = ({ handleSelectedChoice }: any) => {
         () => <StepFour onClick={onClick} />,
         () => <StepFive onClick={onClick} />,
         () => <StepSix onClick={onClick} />,
-        () => <div>
-            <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                <Typography variant='h4'>Faster and easier than paper tests</Typography>
-            </Box>
-            <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                <Typography variant='h6' >Unlike pen-and-paper tests, BrainCheck lets you assess patients from anywhere with detailed cognitive reports in just 15 minutes.</Typography>
-            </Box>
-            <Box textAlign='center' sx={{ margin: '20px 0' }}>
-                <Typography variant='h6' >It's easy and accessible for your patients and integrates seamlessly into your workflows.</Typography>
-            </Box>
-            <div style={{ marginTop: 50 }}>
-                <Box display='flex' justifyContent='center'>
-                    <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
-                </Box>
-                <Box display='flex' justifyContent='end'>
-                    <Typography variant='caption' >Source: Product Update 2019</Typography>
-                </Box>
-            </div>
-        </div>,
+        () => <StepSeven onClick={onClick} />,
         () => {
             return <div>
                 <Box textAlign='center' sx={{ margin: '20px 0' }}>
