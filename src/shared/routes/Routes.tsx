@@ -13,7 +13,7 @@ const pageTransition = {
 	duration: 0.9,
 }
 
-const AnimatedPage = ({ variants, children }: { variants: Record<string, Record<string, string | number>>; children: ReactNode }) => {
+export const AnimatedPage = ({ variants, children }: { variants: Record<string, Record<string, string | number>>; children: ReactNode }) => {
 	return (
 		<motion.div
 			variants={variants}
@@ -27,7 +27,9 @@ const AnimatedPage = ({ variants, children }: { variants: Record<string, Record<
 	)
 }
 
-const homeVariants = {
+export const AnimatedSteps = ({ children }: { children: ReactNode }) => <AnimatePresence mode='wait'><AnimatedPage variants={selectRoleVariants}>{children}</AnimatedPage></AnimatePresence>
+
+export const homeVariants = {
 	initial: {
 		scale: 0.3,
 		opacity: 0,
@@ -42,7 +44,7 @@ const homeVariants = {
 	}
 }
 
-const selectRoleVariants = {
+export const selectRoleVariants = {
 	initial: {
 		opacity: 0,
 	},

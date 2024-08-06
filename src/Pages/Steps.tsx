@@ -14,6 +14,7 @@ import Modal from '@mui/material/Modal'
 import Slide from '@mui/material/Slide'
 import HomeIcon from '@mui/icons-material/Home';
 import ViewResult from './ViewResults'
+import { AnimatedSteps } from '../shared/routes/Routes'
 
 function LinearWithValueLabel({ progress, handleProgress }: { progress: number; handleProgress: () => void }) {
     useEffect(() => {
@@ -55,7 +56,9 @@ const steps = ({ handleSelectedChoice }: any) => {
     const [countPracticeConducting, setCountPracticeConducting] = useState(0)
 
     return [
-        () => <StepOne onClick={onClick} />,
+        () => <AnimatedSteps>
+            <StepOne onClick={onClick} />
+        </AnimatedSteps>,
         () => <StepTwo onClick={onClick} />,
         () => <StepThree onClick={onClick} />,
         () => <StepFour onClick={onClick} />,
@@ -75,7 +78,9 @@ const steps = ({ handleSelectedChoice }: any) => {
             onClick={() => onClick(countPracticeConducting + '')} />,
         () => <StepTen onClick={onClick} />,
         () => <StepEleven onClick={onClick} />,
-        () => <ViewResult />
+        () => <AnimatedSteps>
+            <ViewResult />
+        </AnimatedSteps>
     ]
 }
 
