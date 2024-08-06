@@ -63,7 +63,7 @@ export default function Home() {
                 >
                     BrainCheck
                 </Typography>
-                <Link to='/steps' style={{ textDecoration: 'none', color: '#000', display: 'inline-block', padding: '10px 12px', background: '#ffea2f', border: '1px solid #000', borderRadius: 10, fontSize: 36 }}>Get Started</Link>
+                <Link to='/steps' className='btn-cta'>Get Started</Link>
                 <Button size='small' onClick={() => setisOpenModal(true)}>More about ROI calculator</Button>
             </Box>
             <ModalAbout

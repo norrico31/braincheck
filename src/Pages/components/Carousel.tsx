@@ -39,7 +39,7 @@ const mockImages = [
 export default function Carousel() {
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
-    const [images, setImages] = useState(mockImages)
+    const [images, setImages] = useState(mockImages) // change mockImages to [] empty array when api is ready
     const maxSteps = images.length;
 
     useEffect(() => {

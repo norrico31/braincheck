@@ -30,3 +30,14 @@ body,
   transform-origin: top;
 }
 
+.btn-cta {
+  text-decoration: none;
+  color: #000;
+  display: inline-block;
+  padding: 10px 12px;
+  background: #ffea2f;
+  border: 1px solid #000;
+  border-radius: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}

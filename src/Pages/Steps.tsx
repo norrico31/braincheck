@@ -13,6 +13,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Modal from '@mui/material/Modal'
 import Slide from '@mui/material/Slide'
 import HomeIcon from '@mui/icons-material/Home';
+import ViewResult from './ViewResults'
 
 function LinearWithValueLabel({ progress, handleProgress }: { progress: number; handleProgress: () => void }) {
     useEffect(() => {
@@ -74,6 +75,7 @@ const steps = ({ handleSelectedChoice }: any) => {
             onClick={() => onClick(countPracticeConducting + '')} />,
         () => <StepTen onClick={onClick} />,
         () => <StepEleven onClick={onClick} />,
+        () => <ViewResult />
     ]
 }
 
@@ -148,36 +150,38 @@ function TextMobileStepper() {
         const newProgress = Math.max(progress - (100 / maxSteps), 0)
         setProgress(newProgress)
     }
-
+    console.log(activeStep)
     return (
         <Container maxWidth='lg' >
-            <LinearProgress variant="determinate" value={progress} />
-            <MobileStepper
-                variant="text"
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                nextButton={
-                    <Button
-                        size="small"
-                        onClick={() => setIsOpenModalStart(true)}
-                        disabled={activeStep === 0}
-                    >
-                        <HomeIcon />
-                        Home
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme?.direction === 'rtl' ? (
-                            <KeyboardArrowRight />
-                        ) : (
-                            <KeyboardArrowLeft />
-                        )}
-                        Go back
-                    </Button>
-                }
-            />
+            {activeStep < 11 && <>
+                <LinearProgress variant="determinate" value={progress} />
+                <MobileStepper
+                    variant="text"
+                    steps={maxSteps}
+                    position="static"
+                    activeStep={activeStep}
+                    nextButton={
+                        <Button
+                            size="small"
+                            onClick={() => setIsOpenModalStart(true)}
+                            disabled={activeStep === 0}
+                        >
+                            <HomeIcon />
+                            Home
+                        </Button>
+                    }
+                    backButton={
+                        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                            {theme?.direction === 'rtl' ? (
+                                <KeyboardArrowRight />
+                            ) : (
+                                <KeyboardArrowLeft />
+                            )}
+                            Go back
+                        </Button>
+                    }
+                />
+            </>}
             {steps({
                 handleSelectedChoice: (b: string) => {
                     setInfo({
