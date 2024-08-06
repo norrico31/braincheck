@@ -7,6 +7,12 @@ import Steps from "../../Pages/Steps"
 import ViewResults from "../../Pages/ViewResults"
 import Subscribe from './../../Pages/Subscribe';
 
+const pageTransition = {
+	type: "tween",
+	ease: "anticipate",
+	duration: 0.9,
+}
+
 const AnimatedPage = ({ variants, children }: { variants: Record<string, Record<string, string | number>>; children: ReactNode }) => {
 	return (
 		<motion.div
@@ -52,12 +58,6 @@ const selectRoleVariants = {
 		// scale: 0,
 		// height: '100%'
 	}
-}
-
-const pageTransition = {
-	type: "tween",
-	ease: "anticipate",
-	duration: 0.9,
 }
 
 export default function Paths() {
