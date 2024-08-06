@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -9,10 +9,11 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import axios from 'axios';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const images = [
+const mockImages = [
     {
         label: 'San Francisco – Oakland Bay Bridge, United States',
         imgPath:
@@ -37,8 +38,29 @@ const images = [
 
 export default function Carousel() {
     const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0);
+    const [images, setImages] = useState(mockImages)
     const maxSteps = images.length;
+
+    useEffect(() => {
+        const controller = new AbortController()
+        getImages(controller.signal)
+        return function () {
+            controller.abort()
+        }
+    }, [])
+
+    async function getImages(signal: AbortSignal) {
+        try {
+            // API OF IMAGES FOR CAROUSEL HERE
+            const res = await axios.get('/api', { signal })
+            console.log(res)
+            // setImages(res.data.data) // set the data from api here
+        } catch (error) {
+            // handle error here when something happens in api
+            return error
+        }
+    }
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep === maxSteps - 1 ? 0 : prevActiveStep + 1);

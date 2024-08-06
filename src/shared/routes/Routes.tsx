@@ -45,18 +45,12 @@ const homeVariants = {
 const selectRoleVariants = {
 	initial: {
 		opacity: 0,
-		// scale: 0,
-		// height: '100%'
 	},
 	in: {
 		opacity: 1,
-		// scale: 1,
-		// height: '100%'
 	},
 	out: {
 		opacity: 0,
-		// scale: 0,
-		// height: '100%'
 	}
 }
 
