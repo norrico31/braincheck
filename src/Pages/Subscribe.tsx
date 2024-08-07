@@ -2,16 +2,15 @@ import { useState } from 'react'
 import { IconButton, TextField, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import { Button } from './components'
-import { Link, useNavigate } from 'react-router-dom'
 import CloseIcon from '@mui/icons-material/Close';
 import FullScreenDialog from './FullScreenSubscribe'
 
 export default function Subscribe() {
     const [isOpenDialog, setIsOpenDialog] = useState(false);
-    const navigate = useNavigate()
     return (
         <Box sx={{ height: '100svh', display: 'flex', position: 'relative' }}>
-            <IconButton children={<CloseIcon />} sx={{ position: 'absolute', top: 10, right: 10 }} onClick={() => navigate('/view-results')} />
+            {/* CHANGE THIS HREF */}
+            <IconButton children={<CloseIcon />} sx={{ position: 'absolute', top: 10, right: 10 }} onClick={() => window.location.href = '/view-results'} />
             <Box width='50%' sx={{ background: '#fdfdda', padding: '0 10px' }} textAlign='center'>
                 <Typography variant='h5' paddingTop='100px'>
                     Your download has started! <br />

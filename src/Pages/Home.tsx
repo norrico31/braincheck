@@ -6,7 +6,6 @@ import Slide from '@mui/material/Slide'
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import { Button } from './components'
-import { Link } from 'react-router-dom';
 
 function ModalAbout({ open, handleClose }: { open: boolean; handleClose: () => void }) {
     return <Modal
@@ -52,7 +51,7 @@ const Paragraph = ({ children, id }: { id: string; children: ReactNode }) => {
     </Typography>
 }
 
-export default function Home() {
+export default function Home({ onClick }: { onClick: () => void }) {
     const [isOpenModal, setisOpenModal] = useState(false);
     return (
         <Box sx={{ height: '100svh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -63,7 +62,7 @@ export default function Home() {
                 >
                     BrainCheck
                 </Typography>
-                <Link to='/steps' className='btn-cta'>Get Started</Link>
+                <button className='btn-cta' onClick={onClick}>Get Started</button>
                 <Button size='small' onClick={() => setisOpenModal(true)}>More about ROI calculator</Button>
             </Box>
             <ModalAbout

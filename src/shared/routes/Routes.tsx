@@ -1,6 +1,5 @@
 import { ReactNode } from "react"
 import { AnimatePresence, motion } from 'framer-motion'
-import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Home from '../../Pages/Home'
 import Steps from "../../Pages/Steps"
@@ -59,11 +58,11 @@ export const selectRoleVariants = {
 export default function Paths() {
 	const location = useLocation()
 	return <AnimatePresence mode='wait'>
-		<Routes location={location} key={location.pathname}>
+		{/* <Routes location={location} key={location.pathname}>
 			<Route path="/" element={<AnimatedPage variants={homeVariants}><Home /></AnimatedPage>} />
 			<Route path="/steps" element={<AnimatedPage variants={selectRoleVariants}><Steps /></AnimatedPage>} />
 			<Route path="/view-results" element={<AnimatedPage variants={selectRoleVariants}><ViewResults /></AnimatedPage>} />
 			<Route path="/subscribe" element={<AnimatedPage variants={selectRoleVariants}><Subscribe /></AnimatedPage>} />
-		</Routes>
+		</Routes> */}
 	</AnimatePresence>
 }

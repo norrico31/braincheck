@@ -7,7 +7,6 @@ import CachedIcon from '@mui/icons-material/Cached';
 import CloseIcon from '@mui/icons-material/Close';
 import { AppBar, Dialog, FormControlLabel, Grid, IconButton, Paper, styled, Switch, Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@mui/material'
 import { Button, Carousel, CollapseAccordion, ImageCard } from './components'
-import { Link } from 'react-router-dom'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -34,7 +33,7 @@ export default function ViewResult() {
                     <Grid item xs={8} sm={5} md={3} lg={3} xl={3} key={idx}>
                         <Paper elevation={3} sx={{ minHeight: 200, padding: '1rem' }}>
                             <Box>
-                                <Typography component='p'>The estimated annual ROI for your practice <br /> <b>with 0 to 20% of patients over 65 is</b></Typography>
+                                <Typography component='p'>The estimated annual ROI for your practice <br /> <b>with 0 href 20% of patients over 65 is</b></Typography>
                             </Box>
                         </Paper>
                     </Grid>
@@ -42,7 +41,7 @@ export default function ViewResult() {
                         <Grid item xs={8} sm={5} md={3} lg={3} xl={3} >
                             <Paper elevation={3} sx={{ minHeight: 250, padding: '2rem' }}>
                                 <Box>
-                                    <Typography component='p'>The estimated annual ROI for your practice <br /> <b>with 0 to 20% of patients over 65 is</b></Typography>
+                                    <Typography component='p'>The estimated annual ROI for your practice <br /> <b>with 0 href 20% of patients over 65 is</b></Typography>
                                 </Box>
                                 <Box margin='30px 0'>
                                     <img src="" alt="" />
@@ -73,7 +72,7 @@ export default function ViewResult() {
                                     <Typography component='h4'>Grap your <br /> insights PDF</Typography>
                                 </Box>
                                 <Box marginTop='50px'>
-                                    <Link to='/subscribe' style={{ textDecoration: 'none', padding: '10px 13px', background: '#d4d4d4', color: '#000' }}>Download</Link>
+                                    <a href='/subscribe' style={{ textDecoration: 'none', padding: '10px 13px', background: '#d4d4d4', color: '#000' }}>Download</a>
                                 </Box>
                             </Paper>
                         </Grid>
@@ -208,7 +207,7 @@ export default function ViewResult() {
                             <Grid item xs={15} sm={14} md={6} zeroMinWidth>
                                 <Item sx={{ background: '#ecf0c7ed' }}>
                                     <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Guide</Typography>
-                                    <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />Explaining BrainCheck results to patients</Typography>
+                                    <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />Explaining BrainCheck results href patients</Typography>
                                     <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>These educational resources can help provider <br /> learn more about remote cognitive testing and care</Typography>
                                     <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
                                         Download
@@ -237,13 +236,13 @@ export default function ViewResult() {
                 <Container maxWidth='lg'>
                     <Box mt={10}>
                         <Typography variant='h4'>Get the latest on Brain health</Typography>
-                        <Typography variant='h6' component='p'>Join a network of specialists focused on advancing the field of cognitive <br />health, and get expert strategies to build cognitive resilience.</Typography>
+                        <Typography variant='h6' component='p'>Join a network of specialists focused on advancing the field of cognitive <br />health, and get expert strategies href build cognitive resilience.</Typography>
                     </Box>
                     <Box margin='20px auto' width='30%' >
                         <EmailSubscribe />
                     </Box>
                     <Box>
-                        <Typography variant='caption' sx={{ color: '#757575' }}>We're committed to your privacy and will not share your data with third parties. <br /> See our <b><Link to='/privacy-policy' style={{ color: 'inherit' }}>Privacy Policy</Link></b></Typography>
+                        <Typography variant='caption' sx={{ color: '#757575' }}>We're committed href your privacy and will not share your data with third parties. <br /> See our <b><a href='/privacy-policy' style={{ color: 'inherit' }}>Privacy Policy</a></b></Typography>
                     </Box>
                 </Container>
                 <Container maxWidth='lg'>
@@ -275,21 +274,21 @@ export default function ViewResult() {
                     <Box display='flex' gap={8}>
                         <Box display='grid' gap={2}>
                             <Typography variant='h6' component='p'>Menu</Typography>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</Link>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</Link>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</Link>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
                         </Box>
                         <Box display='grid' gap={2}>
                             <Typography variant='h6' component='p'>Menu 2</Typography>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</Link>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</Link>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</Link>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
                         </Box>
                         <Box display='grid' gap={2}>
                             <Typography variant='h6' component='p'>Menu 3</Typography>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</Link>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</Link>
-                            <Link to='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</Link>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
+                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
                         </Box>
                     </Box>
                 </Container>
