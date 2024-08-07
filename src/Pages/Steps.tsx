@@ -15,6 +15,7 @@ import Slide from '@mui/material/Slide'
 import HomeIcon from '@mui/icons-material/Home';
 import ViewResult from './ViewResults'
 import { AnimateSteps } from '../shared/routes/Routes'
+import axios from 'axios'
 
 function LinearWithValueLabel({ progress, handleProgress }: { progress: number; handleProgress: () => void }) {
     useEffect(() => {
@@ -34,7 +35,7 @@ function LinearWithValueLabel({ progress, handleProgress }: { progress: number; 
     </Box>
 }
 
-const steps = ({ handleSelectedChoice }: any) => {
+const steps = ({ state, handleSelectedChoice }: any) => {
     const [minsOfAssessingResult, setMinsOfAssessingResult] = useState(90)
     const [countPracticeConducting, setCountPracticeConducting] = useState(0)
 
@@ -53,15 +54,15 @@ const steps = ({ handleSelectedChoice }: any) => {
         }
         handleSelectedChoice(v)
     }
-
+    // PASS THE STATE INTO STEPS COMPONENT HERE
     return [
-        () => <StepOne onClick={onClick} />,
-        () => <StepTwo onClick={onClick} />,
-        () => <StepThree onClick={onClick} />,
-        () => <StepFour onClick={onClick} />,
-        () => <StepFive onClick={onClick} />,
-        () => <StepSix onClick={onClick} />,
-        () => <StepSeven onClick={onClick} />,
+        () => <StepOne onClick={onClick} state={state} />,
+        () => <StepTwo onClick={onClick} state={state} />,
+        () => <StepThree onClick={onClick} state={state} />,
+        () => <StepFour onClick={onClick} state={state} />,
+        () => <StepFive onClick={onClick} state={state} />,
+        () => <StepSix onClick={onClick} state={state} />,
+        () => <StepSeven onClick={onClick} state={state} />,
         () => <StepEight minsOfAssessingResult={minsOfAssessingResult} setMinsOfAssessingResult={setMinsOfAssessingResult} onClick={onClick} />,
         () => <StepNine
             countPracticeConducting={countPracticeConducting}
@@ -128,6 +129,7 @@ const Paragraph = ({ children, id }: { id: string; children: ReactNode }) => {
     </Typography>
 }
 
+
 function TextMobileStepper() {
     const theme = useTheme() as any
     const maxSteps = steps({ handleSelectedChoice: () => null }).length
@@ -151,7 +153,31 @@ function TextMobileStepper() {
         setProgress(newProgress)
     }
 
+
+    //* INTEG TO PASS THE STATE TO ALL STEPS FROM API 
+    const [state, setState] = useState({}) // object || array
+
+    useEffect(() => {
+        const controller = new AbortController();
+        let flag = false;
+        !flag && (async () => {
+            try {
+                const res = await axios.get('/wordpress-api', { signal: controller.signal })
+                console.log(`api result: ${res}`)
+                // setState(res.data) // set the data from api here
+            } catch (error) {
+                throw new Error('wordpress api broken')
+            }
+        })()
+        return function () {
+            controller.abort()
+            flag = true
+        }
+    }, [])
+
+    // * PASS THE STATE HERE 
     const stepComponent = steps({
+        state,
         handleSelectedChoice: (b: string) => {
             if (activeStep === 10) {
                 setIsViewResult(true)
@@ -164,7 +190,9 @@ function TextMobileStepper() {
             handleNext()
         },
     })[activeStep]
-
+    console.log(info)
+    if (activeStep === 10) alert(JSON.stringify(info, null, 2))
+    // SET ONSUBMIT OR FUNCTION HERE WHEN THE ACTIVE STEP == 10 then pass the payload(info) to axios api POST
     return (
         <div style={{ paddingTop: !isViewResult ? '2rem' : 0 }} >
             {!isViewResult && <Container maxWidth='lg'>
