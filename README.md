@@ -1,10 +1,11 @@
 # Braincheck - Single Page Web App
 
-Simple overview of use/purpose.
+Single page for wordpress
 
-## Description
+## Wordpress + React (Reactpress plugin)
 
-An in-depth paragraph about your project and overview of use.
+## Reference
+* https://rockiger.com/en/reactpress/reactpress-tutorial/
 
 ## Getting Started
 
@@ -13,7 +14,7 @@ An in-depth paragraph about your project and overview of use.
 * React 18
 
 ### NOTE
-* Node 18 above. 
+* Node version 20. 
 
 ### Installing
 
@@ -22,7 +23,7 @@ An in-depth paragraph about your project and overview of use.
 git clone git@github.com:norrico31/braincheck.git
 ```
 * cd into the repo
-* Install node_modules
+* Install node modules
 ```
 npm install --force
 ```
