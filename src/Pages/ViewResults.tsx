@@ -13,284 +13,276 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import DiagramPng from '../shared/assets/diagram.png'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
+import Subscribe from './Subscribe';
 
 export default function ViewResult() {
     const [openModal, setOpenModal] = useState(false)
-    return (
-        <>
-            <Box sx={{ background: '#bac5f5' }}>
-                <AppBar position='sticky' sx={{ background: '#dff5d2ec' }}>
-                    <Container maxWidth='lg' sx={{ padding: '15px' }}>
-                        <Typography variant='h5' color='#000'>BrainCheck</Typography>
-                    </Container>
-                </AppBar>
-                <Container maxWidth='xl' sx={{ padding: '5px' }}>
-                    <Box textAlign='center'>
-                        <h1>Here is how much time and revenue <br />BrainCheck can generate for your practice</h1>
-                    </Box>
-                    <Grid container gap={2} display='flex' justifyContent='center'>
-                        {/* {new Array(3).fill(null).map((_, idx) => (
-                    <Grid item xs={8} sm={5} md={3} lg={3} xl={3} key={idx}>
-                        <Paper elevation={3} sx={{ minHeight: 200, padding: '1rem' }}>
+    const [isOpenSubscribe, setIsOpenSubscribe] = useState(false)
+
+    return !isOpenSubscribe ? <>
+        <Box sx={{ background: '#bac5f5' }}>
+            <AppBar position='sticky' sx={{ background: '#dff5d2ec' }}>
+                <Container maxWidth='lg' sx={{ padding: '15px' }}>
+                    <Typography variant='h5' color='#000'>BrainCheck</Typography>
+                </Container>
+            </AppBar>
+            <Container maxWidth='xl' sx={{ padding: '5px' }}>
+                <Box textAlign='center'>
+                    <h1>Here is how much time and revenue <br />BrainCheck can generate for your practice</h1>
+                </Box>
+                <Grid container gap={2} display='flex' justifyContent='center'>
+                    <Grid item xs={8} sm={5} md={3} lg={3} xl={3} >
+                        <Paper elevation={3} sx={{ minHeight: 250, padding: '2rem' }}>
                             <Box>
                                 <Typography component='p'>The estimated annual ROI for your practice <br /> <b>with 0 href 20% of patients over 65 is</b></Typography>
                             </Box>
+                            <Box margin='30px 0'>
+                                <img src="" alt="" />
+                                <i>per year</i>
+                            </Box>
+                            <Box>
+                                <Typography component='p'>*Estimated incremental revenue <br /> per provider averaging one test per day</Typography>
+                            </Box>
                         </Paper>
                     </Grid>
-                    ))} */}
-                        <Grid item xs={8} sm={5} md={3} lg={3} xl={3} >
-                            <Paper elevation={3} sx={{ minHeight: 250, padding: '2rem' }}>
-                                <Box>
-                                    <Typography component='p'>The estimated annual ROI for your practice <br /> <b>with 0 href 20% of patients over 65 is</b></Typography>
-                                </Box>
-                                <Box margin='30px 0'>
-                                    <img src="" alt="" />
-                                    <i>per year</i>
-                                </Box>
-                                <Box>
-                                    <Typography component='p'>*Estimated incremental revenue <br /> per provider averaging one test per day</Typography>
-                                </Box>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={8} sm={5} md={3} lg={3} xl={3}>
-                            <Paper elevation={3} sx={{ minHeight: 250, padding: '2rem' }}>
-                                <Box>
-                                    <Typography component='p'>Your estimated <b>time saved</b> is</Typography>
-                                </Box>
-                                <Box margin='30px 0'>
-                                    <img src="" alt="" />
-                                    <i>Hours / Year</i>
-                                </Box>
-                                <Box>
-                                    <Typography component='p'>Based on 6 <b>providers</b> in your practice spending <b>30 minutes</b> with each patient</Typography>
-                                </Box>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={8} sm={5} md={3} lg={3} xl={3}>
-                            <Paper elevation={3} sx={{ minHeight: 250, padding: '2rem' }}>
-                                <Box>
-                                    <Typography component='h4'>Grap your <br /> insights PDF</Typography>
-                                </Box>
-                                <Box marginTop='50px'>
-                                    <a href='/subscribe' style={{ textDecoration: 'none', padding: '10px 13px', background: '#d4d4d4', color: '#000' }}>Download</a>
-                                </Box>
-                            </Paper>
-                        </Grid>
+                    <Grid item xs={8} sm={5} md={3} lg={3} xl={3}>
+                        <Paper elevation={3} sx={{ minHeight: 250, padding: '2rem' }}>
+                            <Box>
+                                <Typography component='p'>Your estimated <b>time saved</b> is</Typography>
+                            </Box>
+                            <Box margin='30px 0'>
+                                <img src="" alt="" />
+                                <i>Hours / Year</i>
+                            </Box>
+                            <Box>
+                                <Typography component='p'>Based on 6 <b>providers</b> in your practice spending <b>30 minutes</b> with each patient</Typography>
+                            </Box>
+                        </Paper>
                     </Grid>
-                    <Box display='flex' justifyContent='center' padding='10px 0'>
-                        <Button onClick={() => setOpenModal(true)}>
-                            <CachedIcon />
-                            Change your answers
-                        </Button>
-                    </Box>
-                </Container>
-            </Box>
-            <ModalChangeAnswer open={openModal} handleClose={() => setOpenModal(false)} />
-            <Box textAlign='center' padding={2} paddingTop={10} >
-                <Typography variant='h4'>Essential reads for your specialization</Typography>
+                    <Grid item xs={8} sm={5} md={3} lg={3} xl={3}>
+                        <Paper elevation={3} sx={{ minHeight: 250, padding: '2rem' }}>
+                            <Box>
+                                <Typography component='h4'>Grap your <br /> insights PDF</Typography>
+                            </Box>
+                            <Box marginTop='50px'>
+                                <button style={{ textDecoration: 'none', padding: '10px 13px', background: '#d4d4d4', color: '#000', cursor: 'pointer', border: 'none' }} onClick={() => setIsOpenSubscribe(true)}>Download</button>
+                            </Box>
+                        </Paper>
+                    </Grid>
+                </Grid>
+                <Box display='flex' justifyContent='center' padding='10px 0'>
+                    <Button onClick={() => setOpenModal(true)}>
+                        <CachedIcon />
+                        Change your answers
+                    </Button>
+                </Box>
+            </Container>
+        </Box>
+        <ModalChangeAnswer open={openModal} handleClose={() => setOpenModal(false)} />
+        <Box textAlign='center' padding={2} paddingTop={10} >
+            <Typography variant='h4'>Essential reads for your specialization</Typography>
+            <Container maxWidth='lg' sx={{ margin: '2rem auto' }}>
+                <Grid container spacing={2} mt='10px' padding={5}>
+                    <Grid item xs={15} sm={14} md={6} zeroMinWidth>
+                        <Item sx={{ background: '#ecf0c7ed' }}>
+                            <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Publication</Typography>
+                            <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />With The Stroop Test</Typography>
+                            <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>Roland Hafner, Tim Hertweck, et. al arXiv 2020</Typography>
+                            <Box display='flex' justifyContent='space-between' alignItems='center'>
+                                <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
+                                    Download
+                                    <ArrowDownwardIcon />
+                                </Button>
+                                <IconButton sx={{ background: 'yellow' }} children={<ArrowForwardIcon />} />
+                            </Box>
+                        </Item>
+                    </Grid>
+                    <Grid item xs={15} sm={14} md={6} zeroMinWidth>
+                        <Item sx={{ background: '#ecf0c7ed' }}>
+                            <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Blog post</Typography>
+                            <Typography noWrap variant='h6' component='p'>Are Prescriptions Helping or Harms Dementia Patients? Executive Function With The Stroop Test</Typography>
+                            <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }}>Roland Hafner, Tim Hertweck, et. al arXiv 2020</Typography>
+                            <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} margin='10px 0'>18 May 2020</Typography>
+                            <Box display='flex' justifyContent='space-between' alignItems='center'>
+                                <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
+                                    Download
+                                    <ArrowDownwardIcon />
+                                </Button>
+                                <IconButton sx={{ background: 'yellow' }} children={<ArrowForwardIcon />} />
+                            </Box>
+                        </Item>
+                    </Grid>
+                    <Grid item xs={15} sm={14} md={6} zeroMinWidth>
+                        <Item sx={{ background: '#ecf0c7ed' }}>
+                            <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Publication</Typography>
+                            <Typography noWrap variant='h6' component='p'>Are Prescriptions Helping or Harms Dementia Patients? Executive Function With The Stroop Test</Typography>
+                            <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }}>Roland Hafner, Tim Hertweck, et. al arXiv 2020</Typography>
+                            <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} margin='10px 0'>18 May 2020</Typography>
+                            <Box display='flex' justifyContent='space-between' alignItems='center'>
+                                <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
+                                    Download
+                                    <ArrowDownwardIcon />
+                                </Button>
+                                <IconButton sx={{ background: 'yellow' }} children={<ArrowForwardIcon />} />
+                            </Box>
+                        </Item>
+                    </Grid>
+                    <Grid item xs={15} sm={14} md={6} zeroMinWidth>
+                        <Item sx={{ background: '#ecf0c7ed' }}>
+                            <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Blog post</Typography>
+                            <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />With The Stroop Test</Typography>
+                            <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>Roland Hafner, Tim Hertweck, et. al arXiv 2020</Typography>
+                            <Box display='flex' justifyContent='space-between' alignItems='center'>
+                                <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
+                                    Download
+                                    <ArrowDownwardIcon />
+                                </Button>
+                                <IconButton sx={{ background: 'yellow' }} children={<ArrowForwardIcon />} />
+                            </Box>
+                        </Item>
+                    </Grid>
+                </Grid>
+            </Container>
+            <Typography variant='h4'>Over 400 practices trust BrainCheck</Typography>
+            <Container maxWidth='lg'>
+                <Box display='flex' gap={2} justifyContent='space-evenly'>
+                    <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
+                        <InstagramIcon fontSize='large' />
+                    </div>
+                    <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
+                        <InstagramIcon fontSize='large' />
+                    </div>
+                    <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
+                        <InstagramIcon fontSize='large' />
+                    </div>
+                    <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
+                        <InstagramIcon fontSize='large' />
+                    </div>
+                    <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
+                        <InstagramIcon fontSize='large' />
+                    </div>
+                    <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
+                        <InstagramIcon fontSize='large' />
+                    </div>
+                    <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
+                        <InstagramIcon fontSize='large' />
+                    </div>
+                    <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
+                        <InstagramIcon fontSize='large' />
+                    </div>
+                </Box>
+            </Container>
+            <Container maxWidth='lg' sx={{ background: '#ecf0c7ed', textAlign: 'left' }}>
+                <Box padding={5}>
+                    <Typography variant='h4'>What your <b>Annual Wellness <br /> Visit (AWV) workflow</b> looks like <br />  optimized with BrainCheck</Typography>
+                </Box>
+                <Box display='flex' justifyContent='flex-end'>
+                    <img src={DiagramPng} alt="diagram" width={400} />
+                </Box>
+                <Box sx={{ padding: '20px' }}>
+                    <ToggleSwitch />
+                </Box>
+            </Container>
+            <Container maxWidth='lg'>
+                <DataTable />
+            </Container>
+            <Container maxWidth='lg'>
+                <Grid container gap={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                    <ImageCard />
+                    <ImageCard />
+                    <ImageCard />
+                </Grid>
+            </Container>
+            <Container maxWidth='lg' sx={{ marginTop: 15 }}>
+                <Typography variant='h4'>Maximize your BrainCheck experience</Typography>
                 <Container maxWidth='lg' sx={{ margin: '2rem auto' }}>
                     <Grid container spacing={2} mt='10px' padding={5}>
                         <Grid item xs={15} sm={14} md={6} zeroMinWidth>
                             <Item sx={{ background: '#ecf0c7ed' }}>
-                                <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Publication</Typography>
-                                <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />With The Stroop Test</Typography>
-                                <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>Roland Hafner, Tim Hertweck, et. al arXiv 2020</Typography>
-                                <Box display='flex' justifyContent='space-between' alignItems='center'>
-                                    <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
-                                        Download
-                                        <ArrowDownwardIcon />
-                                    </Button>
-                                    <IconButton sx={{ background: 'yellow' }} children={<ArrowForwardIcon />} />
-                                </Box>
+                                <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Guide</Typography>
+                                <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />Explaining BrainCheck results href patients</Typography>
+                                <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>These educational resources can help provider <br /> learn more about remote cognitive testing and care</Typography>
+                                <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
+                                    Download
+                                    <ArrowDownwardIcon />
+                                </Button>
                             </Item>
                         </Grid>
                         <Grid item xs={15} sm={14} md={6} zeroMinWidth>
                             <Item sx={{ background: '#ecf0c7ed' }}>
-                                <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Blog post</Typography>
-                                <Typography noWrap variant='h6' component='p'>Are Prescriptions Helping or Harms Dementia Patients? Executive Function With The Stroop Test</Typography>
-                                <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }}>Roland Hafner, Tim Hertweck, et. al arXiv 2020</Typography>
+                                <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Guide</Typography>
+                                <Typography noWrap variant='h6' component='p'>Clinical user guide</Typography>
+                                <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>These educational resources can help provider <br /> learn more about remote cognitive testing and care</Typography>
                                 <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} margin='10px 0'>18 May 2020</Typography>
-                                <Box display='flex' justifyContent='space-between' alignItems='center'>
-                                    <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
-                                        Download
-                                        <ArrowDownwardIcon />
-                                    </Button>
-                                    <IconButton sx={{ background: 'yellow' }} children={<ArrowForwardIcon />} />
-                                </Box>
-                            </Item>
-                        </Grid>
-                        <Grid item xs={15} sm={14} md={6} zeroMinWidth>
-                            <Item sx={{ background: '#ecf0c7ed' }}>
-                                <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Publication</Typography>
-                                <Typography noWrap variant='h6' component='p'>Are Prescriptions Helping or Harms Dementia Patients? Executive Function With The Stroop Test</Typography>
-                                <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }}>Roland Hafner, Tim Hertweck, et. al arXiv 2020</Typography>
-                                <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} margin='10px 0'>18 May 2020</Typography>
-                                <Box display='flex' justifyContent='space-between' alignItems='center'>
-                                    <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
-                                        Download
-                                        <ArrowDownwardIcon />
-                                    </Button>
-                                    <IconButton sx={{ background: 'yellow' }} children={<ArrowForwardIcon />} />
-                                </Box>
-                            </Item>
-                        </Grid>
-                        <Grid item xs={15} sm={14} md={6} zeroMinWidth>
-                            <Item sx={{ background: '#ecf0c7ed' }}>
-                                <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Blog post</Typography>
-                                <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />With The Stroop Test</Typography>
-                                <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>Roland Hafner, Tim Hertweck, et. al arXiv 2020</Typography>
-                                <Box display='flex' justifyContent='space-between' alignItems='center'>
-                                    <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
-                                        Download
-                                        <ArrowDownwardIcon />
-                                    </Button>
-                                    <IconButton sx={{ background: 'yellow' }} children={<ArrowForwardIcon />} />
-                                </Box>
+                                <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
+                                    Download
+                                    <ArrowDownwardIcon />
+                                </Button>
                             </Item>
                         </Grid>
                     </Grid>
                 </Container>
-                <Typography variant='h4'>Over 400 practices trust BrainCheck</Typography>
-                <Container maxWidth='lg'>
-                    <Box display='flex' gap={2} justifyContent='space-evenly'>
-                        <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
-                            <InstagramIcon fontSize='large' />
-                        </div>
-                        <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
-                            <InstagramIcon fontSize='large' />
-                        </div>
-                        <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
-                            <InstagramIcon fontSize='large' />
-                        </div>
-                        <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
-                            <InstagramIcon fontSize='large' />
-                        </div>
-                        <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
-                            <InstagramIcon fontSize='large' />
-                        </div>
-                        <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
-                            <InstagramIcon fontSize='large' />
-                        </div>
-                        <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
-                            <InstagramIcon fontSize='large' />
-                        </div>
-                        <div style={{ width: 100, height: 100, display: 'grid', placeItems: 'center' }}>
-                            <InstagramIcon fontSize='large' />
-                        </div>
+            </Container>
+            <Container maxWidth='lg'>
+                <Carousel />
+            </Container>
+            <Container maxWidth='lg'>
+                <Box mt={10}>
+                    <Typography variant='h4'>Get the latest on Brain health</Typography>
+                    <Typography variant='h6' component='p'>Join a network of specialists focused on advancing the field of cognitive <br />health, and get expert strategies href build cognitive resilience.</Typography>
+                </Box>
+                <Box margin='20px auto' width='30%' >
+                    <EmailSubscribe />
+                </Box>
+                <Box>
+                    <Typography variant='caption' sx={{ color: '#757575' }}>We're committed href your privacy and will not share your data with third parties. <br /> See our <b><a href='/privacy-policy' style={{ color: 'inherit' }}>Privacy Policy</a></b></Typography>
+                </Box>
+            </Container>
+            <Container maxWidth='lg'>
+                <Box mt={10} display='flex'>
+                    <Box width='30%'>
+                        <Typography variant='h4'><b>FAQs</b></Typography>
                     </Box>
-                </Container>
-                <Container maxWidth='lg' sx={{ background: '#ecf0c7ed', textAlign: 'left' }}>
-                    <Box padding={5}>
-                        <Typography variant='h4'>What your <b>Annual Wellness <br /> Visit (AWV) workflow</b> looks like <br />  optimized with BrainCheck</Typography>
+                    <Box width='70%' >
+                        <CollapseAccordion />
                     </Box>
-                    <Box display='flex' justifyContent='flex-end'>
-                        <img src={DiagramPng} alt="diagram" width={400} />
+                </Box>
+            </Container>
+        </Box>
+        <Box sx={{ background: '#dff5d2ec', padding: '4rem 5px', textAlign: 'center' }}>
+            <Container maxWidth='lg' >
+                <Box>
+                    <Typography variant='h4'>Need more support?</Typography>
+                    <Typography variant='h6' component='p'>Get in touch with using our contact form or calling us directly</Typography>
+                    <Button sx={{ marginTop: 3, background: 'transparent', border: '1px solid #000', borderRadius: 3, padding: '8px 24px', '&:hover': { background: '#e4e4e4' } }}>Contact us</Button>
+                </Box>
+            </Container>
+        </Box>
+        <Box sx={{ background: '#000', color: '#fff', padding: '4rem 5px' }}>
+            <Container maxWidth='md'>
+                <Box display='flex' gap={8}>
+                    <Box display='grid' gap={2}>
+                        <Typography variant='h6' component='p'>Menu</Typography>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
                     </Box>
-                    <Box sx={{ padding: '20px' }}>
-                        <ToggleSwitch />
+                    <Box display='grid' gap={2}>
+                        <Typography variant='h6' component='p'>Menu 2</Typography>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
                     </Box>
-                </Container>
-                <Container maxWidth='lg'>
-                    <DataTable />
-                </Container>
-                <Container maxWidth='lg'>
-                    <Grid container gap={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                        <ImageCard />
-                        <ImageCard />
-                        <ImageCard />
-                    </Grid>
-                </Container>
-                <Container maxWidth='lg' sx={{ marginTop: 15 }}>
-                    <Typography variant='h4'>Maximize your BrainCheck experience</Typography>
-                    <Container maxWidth='lg' sx={{ margin: '2rem auto' }}>
-                        <Grid container spacing={2} mt='10px' padding={5}>
-                            <Grid item xs={15} sm={14} md={6} zeroMinWidth>
-                                <Item sx={{ background: '#ecf0c7ed' }}>
-                                    <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Guide</Typography>
-                                    <Typography noWrap variant='h6' component='p'>Measuring Executive Function <br />Explaining BrainCheck results href patients</Typography>
-                                    <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>These educational resources can help provider <br /> learn more about remote cognitive testing and care</Typography>
-                                    <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
-                                        Download
-                                        <ArrowDownwardIcon />
-                                    </Button>
-                                </Item>
-                            </Grid>
-                            <Grid item xs={15} sm={14} md={6} zeroMinWidth>
-                                <Item sx={{ background: '#ecf0c7ed' }}>
-                                    <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} mb={2}>Guide</Typography>
-                                    <Typography noWrap variant='h6' component='p'>Clinical user guide</Typography>
-                                    <Typography variant='caption' sx={{ fontSize: 11, textTransform: 'uppercase' }} mb={2}>These educational resources can help provider <br /> learn more about remote cognitive testing and care</Typography>
-                                    <Typography noWrap variant='h5' sx={{ fontSize: 12, textTransform: 'uppercase' }} margin='10px 0'>18 May 2020</Typography>
-                                    <Button sx={{ display: 'flex', alignItems: 'center', margin: '10px 0', background: '#eeee', border: '1px solid #000', borderRadius: 3, padding: '7px' }} size='small'>
-                                        Download
-                                        <ArrowDownwardIcon />
-                                    </Button>
-                                </Item>
-                            </Grid>
-                        </Grid>
-                    </Container>
-                </Container>
-                <Container maxWidth='lg'>
-                    <Carousel />
-                </Container>
-                <Container maxWidth='lg'>
-                    <Box mt={10}>
-                        <Typography variant='h4'>Get the latest on Brain health</Typography>
-                        <Typography variant='h6' component='p'>Join a network of specialists focused on advancing the field of cognitive <br />health, and get expert strategies href build cognitive resilience.</Typography>
+                    <Box display='grid' gap={2}>
+                        <Typography variant='h6' component='p'>Menu 3</Typography>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
+                        <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
                     </Box>
-                    <Box margin='20px auto' width='30%' >
-                        <EmailSubscribe />
-                    </Box>
-                    <Box>
-                        <Typography variant='caption' sx={{ color: '#757575' }}>We're committed href your privacy and will not share your data with third parties. <br /> See our <b><a href='/privacy-policy' style={{ color: 'inherit' }}>Privacy Policy</a></b></Typography>
-                    </Box>
-                </Container>
-                <Container maxWidth='lg'>
-                    <Box mt={10} display='flex'>
-                        <Box width='30%'>
-                            <Typography variant='h4'><b>FAQs</b></Typography>
-                        </Box>
-                        <Box width='70%' >
-                            <CollapseAccordion />
-                        </Box>
-                    </Box>
-                </Container>
-            </Box>
-            <Box sx={{ background: '#dff5d2ec', padding: '4rem 5px', textAlign: 'center' }}>
-                <Container maxWidth='lg' >
-                    <Box>
-                        <Typography variant='h4'>Need more support?</Typography>
-                        <Typography variant='h6' component='p'>Get in touch with using our contact form or calling us directly</Typography>
-                        <Button sx={{ marginTop: 3, background: 'transparent', border: '1px solid #000', borderRadius: 3, padding: '8px 24px', '&:hover': { background: '#e4e4e4' } }}>Contact us</Button>
-                    </Box>
-                </Container>
-            </Box>
-            <Box sx={{ background: '#000', color: '#fff', padding: '4rem 5px' }}>
-                <Container maxWidth='md'>
-                    <Box display='flex' gap={8}>
-                        <Box display='grid' gap={2}>
-                            <Typography variant='h6' component='p'>Menu</Typography>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
-                        </Box>
-                        <Box display='grid' gap={2}>
-                            <Typography variant='h6' component='p'>Menu 2</Typography>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
-                        </Box>
-                        <Box display='grid' gap={2}>
-                            <Typography variant='h6' component='p'>Menu 3</Typography>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 1</a>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 2</a>
-                            <a href='#' style={{ textDecoration: 'none', color: '#979797' }}>Menu item 3</a>
-                        </Box>
-                    </Box>
-                </Container>
-            </Box>
-        </>
-    )
+                </Box>
+            </Container>
+        </Box>
+    </> : <Subscribe onClick={() => setIsOpenSubscribe(false)} />
 }
 
 function EmailSubscribe() {
