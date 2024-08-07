@@ -192,6 +192,18 @@ function TextMobileStepper() {
     })[activeStep]
     console.log(info)
     if (activeStep === 10) alert(JSON.stringify(info, null, 2))
+    const payload = JSON.stringify(info)
+
+    // pass onsubmit to last final step button in steps component
+    async function onSubmit(e: React.FormEvent) {
+        e.preventDefault()
+        try {
+            await axios.post('/wordpress-api-post', payload, { headers: { 'content-type': 'application/json', 'accept': 'application/json' } })
+        } catch (error) {
+            return error
+        }
+    }
+
     // SET ONSUBMIT OR FUNCTION HERE WHEN THE ACTIVE STEP == 10 then pass the payload(info) to axios api POST
     return (
         <div style={{ paddingTop: !isViewResult ? '2rem' : 0 }} >
