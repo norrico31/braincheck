@@ -6,8 +6,8 @@ type Props = {
 }
 
 const btnsSteps = [
-    'Not confident',
-    'Somewhat confident',
+    'Not Confident',
+    'Somewhat Confident',
     'Very Confident',
 ]
 

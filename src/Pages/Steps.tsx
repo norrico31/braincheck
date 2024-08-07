@@ -35,7 +35,10 @@ function LinearWithValueLabel({ progress, handleProgress }: { progress: number; 
 }
 
 const steps = ({ handleSelectedChoice }: any) => {
-    const onClick = (b?: string) => {
+    const [minsOfAssessingResult, setMinsOfAssessingResult] = useState(90)
+    const [countPracticeConducting, setCountPracticeConducting] = useState(0)
+
+    function onClick(b?: string) {
         let v = undefined
         if (typeof b === 'string') {
             if (b.includes(' ')) {
@@ -50,8 +53,6 @@ const steps = ({ handleSelectedChoice }: any) => {
         }
         handleSelectedChoice(v)
     }
-    const [minsOfAssessingResult, setMinsOfAssessingResult] = useState(90)
-    const [countPracticeConducting, setCountPracticeConducting] = useState(0)
 
     return [
         () => <StepOne onClick={onClick} />,
@@ -74,9 +75,6 @@ const steps = ({ handleSelectedChoice }: any) => {
             onClick={() => onClick(countPracticeConducting + '')} />,
         () => <StepTen onClick={onClick} />,
         () => <StepEleven onClick={onClick} />,
-        () => <AnimateSteps>
-            <ViewResult />
-        </AnimateSteps>
     ]
 }
 
@@ -137,6 +135,7 @@ function TextMobileStepper() {
     const [activeStep, setActiveStep] = useState(0)
     const [info, setInfo] = useState<undefined | Record<string, string | number>>()
     const [isOpenModalStart, setIsOpenModalStart] = useState(false)
+    const [isViewResult, setIsViewResult] = useState(false)
 
     const handleNext = () => {
         if ((activeStep + 1) === maxSteps) return
@@ -151,9 +150,24 @@ function TextMobileStepper() {
         const newProgress = Math.max(progress - (100 / maxSteps), 0)
         setProgress(newProgress)
     }
+
+    const stepComponent = steps({
+        handleSelectedChoice: (b: string) => {
+            if (activeStep === 10) {
+                setIsViewResult(true)
+                return
+            }
+            setInfo({
+                ...info,
+                [activeStep]: b
+            })
+            handleNext()
+        },
+    })[activeStep]
+
     return (
-        <div style={{ paddingTop: activeStep < 11 ? '2rem' : 0 }} >
-            {activeStep < 11 && <Container maxWidth='lg'>
+        <div style={{ paddingTop: !isViewResult ? '2rem' : 0 }} >
+            {!isViewResult && <Container maxWidth='lg'>
                 <LinearProgress variant="determinate" value={progress} />
                 <MobileStepper
                     variant="text"
@@ -182,15 +196,12 @@ function TextMobileStepper() {
                     }
                 />
             </Container>}
-            {steps({
-                handleSelectedChoice: (b: string) => {
-                    setInfo({
-                        ...info,
-                        [activeStep]: b
-                    })
-                    handleNext()
-                },
-            })[activeStep]()}
+            {!isViewResult && stepComponent()}
+            {isViewResult && (
+                <AnimateSteps>
+                    <ViewResult />
+                </AnimateSteps>
+            )}
 
             <ModalStartOver open={isOpenModalStart} handleClose={(isBack: boolean) => {
                 if (isBack) {
