@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import { Button } from '..'
 
 type Props = {
@@ -13,7 +13,7 @@ const btnsSteps = [
 
 export default function StepTen({ onClick }: Props) {
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>How confident are you discussing cognitive health with your patients?</Typography>
             </Box>
@@ -27,6 +27,6 @@ export default function StepTen({ onClick }: Props) {
                     </Grid>
                 ))}
             </Grid>
-        </div>
+        </Container>
     )
 }

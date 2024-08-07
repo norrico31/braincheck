@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 
 type Props = {
     onClick: (v?: string) => void
@@ -6,7 +6,7 @@ type Props = {
 
 export default function StepEleven({ onClick }: Props) {
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>Thank you for your answers!</Typography>
             </Box>
@@ -20,6 +20,6 @@ export default function StepEleven({ onClick }: Props) {
                     View Results
                 </button>
             </div>
-        </div>
+        </Container>
     )
 }

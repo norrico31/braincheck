@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { Button } from '..';
 import { TextField } from '@mui/material'
 
@@ -11,7 +11,7 @@ type Props = {
 export default function StepEight({ minsOfAssessingResult, setMinsOfAssessingResult, onClick }: Props) {
 
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>How much time do you usually spend assessing cognitive conditions and interpreting the results for each patient?</Typography>
             </Box>
@@ -24,6 +24,6 @@ export default function StepEight({ minsOfAssessingResult, setMinsOfAssessingRes
             <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
                 <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(minsOfAssessingResult + '')}>Next</Button>
             </div>
-        </div>
+        </Container>
     )
 }

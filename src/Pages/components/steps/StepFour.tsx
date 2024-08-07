@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import { ButtonGrid } from '..';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 
 export default function StepFour({ onClick }: Props) {
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>Now let's talk about your patients</Typography>
             </Box>
@@ -26,6 +26,6 @@ export default function StepFour({ onClick }: Props) {
                     </Grid>
                 ))}
             </Grid>
-        </div>
+        </Container>
     )
 }

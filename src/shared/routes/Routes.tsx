@@ -26,7 +26,7 @@ export const AnimatedPage = ({ variants, children }: { variants: Record<string, 
 	)
 }
 
-export const AnimatedSteps = ({ children }: { children: ReactNode }) => <AnimatePresence mode='wait'><AnimatedPage variants={selectRoleVariants}>{children}</AnimatedPage></AnimatePresence>
+export const AnimateSteps = ({ children }: { children: ReactNode }) => <AnimatePresence mode='wait'><AnimatedPage variants={selectRoleVariants}>{children}</AnimatedPage></AnimatePresence>
 
 export const homeVariants = {
 	initial: {

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { Button } from '..';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 
 export default function StepSeven({ onClick }: Props) {
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>Faster and easier than paper tests</Typography>
             </Box>
@@ -25,6 +25,6 @@ export default function StepSeven({ onClick }: Props) {
                     <Typography variant='caption' >Source: Product Update 2019</Typography>
                 </Box>
             </div>
-        </div>
+        </Container>
     )
 }

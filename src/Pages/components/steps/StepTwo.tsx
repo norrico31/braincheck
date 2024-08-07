@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from '@mui/material'
+import { Box, Container, Grid, Paper, Typography } from '@mui/material'
 import ButtonGrid from '../ButtonGrid'
 
 type Props = {
@@ -17,7 +17,7 @@ const btnSteps = [
 
 export default function StepTwo({ onClick }: Props) {
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>Tell us about your area of expertise</Typography>
             </Box>
@@ -33,6 +33,6 @@ export default function StepTwo({ onClick }: Props) {
                     </Grid>
                 ))}
             </Grid>
-        </div>
+        </Container>
     )
 }

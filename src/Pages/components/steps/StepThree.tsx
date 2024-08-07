@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from '@mui/material'
+import { Box, Container, Grid, Paper, Typography } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check';
 import { Button } from '..';
 
@@ -8,7 +8,7 @@ type Props = {
 
 export default function StepThree({ onClick }: Props) {
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>Here are just a few ways BrainCheck can benefit your work as General Internist</Typography>
             </Box>
@@ -28,6 +28,6 @@ export default function StepThree({ onClick }: Props) {
             <div style={{ textAlign: 'center', marginTop: 50 }}>
                 <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(undefined)}>Next</Button>
             </div>
-        </div>
+        </Container>
     )
 }

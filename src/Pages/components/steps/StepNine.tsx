@@ -1,4 +1,4 @@
-import { Box, IconButton, TextField, Typography } from '@mui/material'
+import { Box, Container, IconButton, TextField, Typography } from '@mui/material'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Button } from '..';
@@ -12,7 +12,7 @@ type Props = {
 
 export default function StepNine({ handleAdd, handleRemove, countPracticeConducting, onClick }: Props) {
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>How many people in your practice are conducting cognitive assessments?</Typography>
             </Box>
@@ -24,6 +24,6 @@ export default function StepNine({ handleAdd, handleRemove, countPracticeConduct
             <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
                 <Button size='large' sx={{ background: '#dedede' }} onClick={() => onClick(countPracticeConducting + '')}>Next</Button>
             </div>
-        </div>
+        </Container>
     )
 }

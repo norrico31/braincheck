@@ -14,14 +14,12 @@ import Modal from '@mui/material/Modal'
 import Slide from '@mui/material/Slide'
 import HomeIcon from '@mui/icons-material/Home';
 import ViewResult from './ViewResults'
-import { AnimatedSteps } from '../shared/routes/Routes'
+import { AnimateSteps } from '../shared/routes/Routes'
 
 function LinearWithValueLabel({ progress, handleProgress }: { progress: number; handleProgress: () => void }) {
     useEffect(() => {
         const timer = setInterval(handleProgress, 800)
-        return () => {
-            clearInterval(timer)
-        }
+        return () => clearInterval(timer)
     }, [])
 
     return <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
@@ -76,9 +74,9 @@ const steps = ({ handleSelectedChoice }: any) => {
             onClick={() => onClick(countPracticeConducting + '')} />,
         () => <StepTen onClick={onClick} />,
         () => <StepEleven onClick={onClick} />,
-        () => <AnimatedSteps>
+        () => <AnimateSteps>
             <ViewResult />
-        </AnimatedSteps>
+        </AnimateSteps>
     ]
 }
 
@@ -154,10 +152,8 @@ function TextMobileStepper() {
         setProgress(newProgress)
     }
     return (
-        <Container maxWidth='lg'
-            style={{ paddingTop: activeStep < 11 ? '2rem' : 0 }}
-        >
-            {activeStep < 11 && <>
+        <div style={{ paddingTop: activeStep < 11 ? '2rem' : 0 }} >
+            {activeStep < 11 && <Container maxWidth='lg'>
                 <LinearProgress variant="determinate" value={progress} />
                 <MobileStepper
                     variant="text"
@@ -185,7 +181,7 @@ function TextMobileStepper() {
                         </Button>
                     }
                 />
-            </>}
+            </Container>}
             {steps({
                 handleSelectedChoice: (b: string) => {
                     setInfo({
@@ -204,7 +200,7 @@ function TextMobileStepper() {
                 }
                 setIsOpenModalStart(false)
             }} />
-        </Container>
+        </div>
     )
 }
 

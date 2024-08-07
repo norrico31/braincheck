@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import CheckboxesGroup from '../../components/CheckboxGroup'
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 
 export default function StepSix({ onClick }: Props) {
     return (
-        <div>
+        <Container maxWidth='lg'>
             <Box textAlign='center' sx={{ margin: '20px 0' }}>
                 <Typography variant='h4'>Enhance your cognitive toolset</Typography>
             </Box>
@@ -15,6 +15,6 @@ export default function StepSix({ onClick }: Props) {
                 <Typography variant='h6' >Please select all the ways you currently assess <br />cognitive health in your practice:</Typography>
             </Box>
             <CheckboxesGroup onClick={onClick} />
-        </div>
+        </Container>
     )
 }
