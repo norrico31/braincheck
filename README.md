@@ -1,4 +1,4 @@
-# BrainCheck
+# Braincheck - Single Page Web App
 
 Simple overview of use/purpose.
 
@@ -10,42 +10,41 @@ An in-depth paragraph about your project and overview of use.
 
 ### Dependency Tools
 
-* React 18.2.0
-* React Router DOM 6.22.3
-* Framer Motion 11.1.7
-* Axios 1.6.8
+* React 18
 
 ### NOTE
-* Use node version 18.0 above 
+* Node 18 above. 
 
 ### Installing
 
-* First cd into the repo
+* Forked the repository 
+```
+git clone git@github.com:norrico31/braincheck.git
+```
+* cd into the repo
 * Install node_modules
 ```
 npm install --force
 ```
-
 ### Executing program
-
 * To run the program
 ```
 npm run dev
 ```
-* To build and generate html file
+* To run build
 ```
 npm run build
 ```
-
+<!-- 
 ## Help
 
 Any advise for common problems or issues.
 ```
 command to run if program contains helper info
-```
+``` -->
 
 ## Authors
 
 Contributors names and contact info
 
-Norrico Gerald Biason and Bricksoft Web Solutions
+Bricksoft Web Solutions
