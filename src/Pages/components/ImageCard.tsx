@@ -36,10 +36,10 @@ export default function ImageCard() {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <Button>
+                <div>
                     <IconButton sx={{ background: 'yellow', marginRight: 1 }} children={<ArrowForwardIcon />} />
                     Learn more
-                </Button>
+                </div>
             </CardActions>
             <Collapse in={false} timeout="auto" unmountOnExit>
                 <CardContent>

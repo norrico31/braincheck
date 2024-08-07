@@ -14,7 +14,9 @@ export default function StepEleven({ onClick }: Props) {
                 <Typography variant='h6' >Now lets take a look ate your personalized insights</Typography>
             </Box>
             <div style={{ marginTop: 50, display: 'grid', placeItems: 'center' }}>
-                <button className='btn-cta' onClick={() => onClick(undefined)}>
+                <button className='btn-cta' onClick={() => {
+                    onClick(undefined)
+                }}>
                     View Results
                 </button>
             </div>

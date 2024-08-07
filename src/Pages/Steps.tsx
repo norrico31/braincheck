@@ -56,9 +56,7 @@ const steps = ({ handleSelectedChoice }: any) => {
     const [countPracticeConducting, setCountPracticeConducting] = useState(0)
 
     return [
-        () => <AnimatedSteps>
-            <StepOne onClick={onClick} />
-        </AnimatedSteps>,
+        () => <StepOne onClick={onClick} />,
         () => <StepTwo onClick={onClick} />,
         () => <StepThree onClick={onClick} />,
         () => <StepFour onClick={onClick} />,
@@ -155,9 +153,10 @@ function TextMobileStepper() {
         const newProgress = Math.max(progress - (100 / maxSteps), 0)
         setProgress(newProgress)
     }
-    console.log(activeStep)
     return (
-        <Container maxWidth='lg' >
+        <Container maxWidth='lg'
+            style={{ paddingTop: activeStep < 11 ? '2rem' : 0 }}
+        >
             {activeStep < 11 && <>
                 <LinearProgress variant="determinate" value={progress} />
                 <MobileStepper
@@ -213,7 +212,7 @@ export default function Steps() {
     const [progress, setProgress] = useState(0)
 
     return progress >= 100 ? (
-        <Box pt={3}>
+        <Box>
             <TextMobileStepper />
         </Box>
     ) : (

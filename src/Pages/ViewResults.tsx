@@ -261,11 +261,7 @@ export default function ViewResult() {
                     <Box>
                         <Typography variant='h4'>Need more support?</Typography>
                         <Typography variant='h6' component='p'>Get in touch with using our contact form or calling us directly</Typography>
-                        <Button sx={{
-                            marginTop: 3, background: 'transparent', border: '1px solid #000', borderRadius: 3, padding: '8px 24px', '&:hover': {
-                                background: '#e4e4e4'
-                            }
-                        }}>Contact us</Button>
+                        <Button sx={{ marginTop: 3, background: 'transparent', border: '1px solid #000', borderRadius: 3, padding: '8px 24px', '&:hover': { background: '#e4e4e4' } }}>Contact us</Button>
                     </Box>
                 </Container>
             </Box>
@@ -300,11 +296,7 @@ export default function ViewResult() {
 function EmailSubscribe() {
     return <>
         <TextField id="standard-basic" label="Full Name*" variant="standard" sx={{ marginTop: 5, width: '100%' }} />
-        <Button sx={{
-            marginTop: 3, background: '#000', color: '#fff', borderRadius: 3, padding: '8px 24px', '&:hover': {
-                background: '#686868'
-            }
-        }}>Subscribe</Button>
+        <Button sx={{ marginTop: 3, background: '#000', color: '#fff', borderRadius: 3, padding: '8px 24px', '&:hover': { background: '#686868' } }}>Subscribe</Button>
     </>
 }
 
@@ -478,9 +470,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
 }));
 
-function ButtonGrid({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
-    return <Button sx={{ width: 110, background: '#3333' }} onClick={onClick}>{children}</Button>
-}
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -528,7 +517,7 @@ function ModalChangeAnswer({ open, handleClose }: { open: boolean; handleClose: 
                                         'Over 60%',
                                     ].map((s, idx) => (
                                         <Grid item xs={8} sm={5} md={3} lg={2} xl={2} key={idx} display='flex' justifyContent='center' alignItems='center'>
-                                            <ButtonGrid onClick={() => alert('aha')}>{s}</ButtonGrid>
+                                            <Button sx={{ width: 110, background: '#3333' }} onClick={() => alert(s)}>{s}</Button>
                                         </Grid>
                                     ))}
                                 </Grid>
@@ -539,7 +528,6 @@ function ModalChangeAnswer({ open, handleClose }: { open: boolean; handleClose: 
                         <Item sx={{ textAlign: 'center' }}>
                             <Typography variant='h5' mb={2}>Time spent with <br /> each patient</Typography>
                             <TextField type='number' value={count} label="minutes" focused onChange={(e) => {
-                                console.log(e.target.value)
                                 setCount(Number(e.target.value))
                             }} />
                         </Item>
